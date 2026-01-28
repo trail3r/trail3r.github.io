@@ -1,6 +1,12 @@
 # main links
 main:
-  - title: "카테고리"
-    url: "/categories/"
-  - title: "태그"
-    url: "/tags/"
+  - title: "개구리의 밀실"
+    url: "/categories/about/"
+  - title: "개구리 성장기"
+    url: "/categories/fictions/"
+  - title: "개구리의 일상"
+    url: "/categories/daily/"
+  - title: "캠퍼스 라이프"
+    url: "/categories/campuslife"
+  - title: "몰입의 즐거움"
+    url: "/categories/interest"
