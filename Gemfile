@@ -1,2 +1,8 @@
 source "https://rubygems.org"
-gemspec
+
+gem "jekyll"
+gem "minimal-mistakes-jekyll"
+gem "webrick"
+
+group :jekll_plugins do
+end

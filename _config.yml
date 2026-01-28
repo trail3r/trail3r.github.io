@@ -23,7 +23,7 @@ name                     : "Hyeon Wuk Park"
 description              : "일상 | 성균관대학교 | 응용AI융합학부 | 파이썬 | Python | 알고리즘 | Algorithm | 인공지능 | AI | Artificial Intelligence | Computer Vision | Notes"
 url                      : "https://trail3r.github.io"
 baseurl                  : ""
-repository               : trail3r/trail3r.github.io
+repository               : "trail3r/trail3r.github.io"
 teaser                   : 
 logo                     : 
 masthead_title           : 
