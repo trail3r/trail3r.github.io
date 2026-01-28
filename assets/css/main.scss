@@ -7,3 +7,6 @@ search: false
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+@import "customs/sidebar_link_icon";  // Author profile 내 커스텀 아이콘 스타일링
+@import "customs/footer_link_icon";  // Footer 내 커스텀 아이콘 스타일링
