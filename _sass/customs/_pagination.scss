@@ -1,0 +1,91 @@
+/* ==========================================================================
+    PAGINATION UI CUSTOMIZATION
+   ========================================================================== */
+
+
+
+.pagination__customized {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+
+.pagination__list {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+.pagination__link {
+    box-sizing: border-box;
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 30px;
+    height: 28px;
+
+    padding: 0 7px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+
+    color: #303038;
+
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.pagination__item.is-selected > .pagination__link {
+    border-color: #0F4C81;
+    color: #0F4C81;
+    font-weight: 600;
+}
+
+
+.pagination__item.is-disabled > .pagination__link {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* 화살표 버튼만 아이콘처럼 스타일링합니다. */
+.pagination__item--first .pagination__link,
+.pagination__item--previous .pagination__link,
+.pagination__item--next .pagination__link,
+.pagination__item--last .pagination__link {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+
+    font-size: 20px;
+    font-weight: 100;
+}
+
+
+.pagination__customized .pagination__link:hover {
+    text-decoration: none !important;
+}
+
+
+
+/* ==========================================================================
+    END OF PAGINATION UI CUSTOMIZATION
+   ========================================================================== */
