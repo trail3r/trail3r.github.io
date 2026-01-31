@@ -1,0 +1,107 @@
+/* ====================================================================================================
+    VARIABLES CUSTOMIZATION
+    ==================================================================================================== */
+
+
+
+/*
+   Naviation Font Customization
+   ==================================================================================================== */
+
+$navigation-font-family: "Galmuri11", "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+
+.masthead, .masthead__menu, .greedy-nav, .greedy-nav a {
+  font-family: $navigation-font-family;
+}
+
+
+
+/*
+   Global Font Family Customization
+   ==================================================================================================== */
+
+$sans-serif: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$serif: "Nanum Myeongjo", "Noto Serif KR", Georgia, Times, serif;
+$monospace: "D2Coding", "Nanum Gothic Coding", "JetBrains Mono", Monaco, Consolas, "Lucida Console", monospace;
+
+
+
+/*
+   Global Font Size Customiation
+   ==================================================================================================== */
+
+/* 블로그 전체 기본 폰트 크기를 설정합니다. */
+$doc-font-size: 16px;
+
+
+/* 폰트 크기를 조절하는 변수를 추가합니다. */
+$xxx-large-font-size: 2rem;
+$xx-large-font-size: 1.75rem;
+$x-large-font-size: 1.5rem;
+$large-font-size: 1.25rem;   
+$standard-font-size: 1rem;
+$small-font-size: 0.8rem;
+$x-small-font-size: 0.7rem;
+$xx-small-font-size: 0.6rem;
+$xxx-small-font-size: 0.5rem;
+
+
+/* 헤더의 폰트 크기를 조절합니다. */
+$h-size-1: 1.5rem;
+$h-size-2: 1.25rem;
+$h-size-3: 1rem;
+$h-size-4: 0.8rem;
+$h-size-5: 0.7rem;
+$h-size-6: 0.7rem;
+
+
+
+/*
+   Global Font Weight Customization
+   ==================================================================================================== */
+
+/* 폰트의 굵기를 조절하는 변수를 추가합니다. */
+$thin: 100;
+$extralight: 200;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$extrabold: 800;
+$black: 900;
+
+
+
+/*
+   Section Size Customzation
+   ==================================================================================================== */
+
+/* 블로그 영역을 조절합니다. */
+$x-large: 1440px;
+
+
+/* 게시글 내부 영역의 크기를 조절합니다. */
+$right-sidebar-width-narrow: 150px;  // default: 200px
+$right-sidebar-width: 250px;  // default: 300px
+$right-sidebar-width-wide: 300px;  // default: 400px
+
+
+/*
+   COLORS PALETTE CUSTOMIZATION
+   ==================================================================================================== */
+
+/* 색상을 변수로 추가합니다. */
+$black: #0A0A0A;  // True Black: RGB(10, 10, 10)
+$white: #F5F5F5;  // Tech White: RGB(245, 245, 245)
+$gray: #808080;  // Gray: RGB(128, 128, 128)
+$light-gray: #41424C;  // Graphite: RGB(65, 66, 76)
+$extra-light-gray: #E0E0E0;  // Light Silver: RGB(224, 224, 224)
+$red: #D0342C;  // Red Beauty: RGB(208, 52, 44)
+$blue: #1338BE;  // Impact Blue: RGB(19, 56, 190)
+
+
+
+/* ====================================================================================================
+   END OF VARIABLES CUSTOMIZATION
+   ==================================================================================================== */

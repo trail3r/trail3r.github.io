@@ -46,11 +46,11 @@
     border-radius: 0.25rem;
 
     // 폰트의 크기와 색상을 조절합니다.
-    font-size: 14px;
-    font-weight: 400;
+    font-size: $xx-small-font-size;
+    font-weight: $regular;
     line-height: 1;
 
-    color: #303038;
+    color: $light-gray;
 
     text-align: center;
     text-decoration: none;
@@ -59,15 +59,15 @@
 
 /* 선택된 버튼에 강조효과를 적용합니다. */
 .pagination__item.is-selected > .pagination__link {
-    border-color: #0F4C81;
-    color: #0F4C81;
-    font-weight: 600;
+    border-color: $blue;
+    color: $blue;
+    font-weight: $bold;
 }
 
 
 /* 비활성화된 버튼을 스타일링합니다. */
 .pagination__item.is-disabled > .pagination__link {
-    opacity: 0.4;
+    opacity: 0.5;
     cursor: default;
     pointer-events: none;
 }
@@ -82,8 +82,8 @@
     height: 28px;
     padding: 0;
 
-    font-size: 20px;
-    font-weight: 100;
+    font-size: $standard-font-size;
+    font-weight: $thin;
 }
 
 
