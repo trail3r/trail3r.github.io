@@ -1,9 +1,10 @@
-/* ==========================================================================
-    PAGINATION UI CUSTOMIZATION
-   ========================================================================== */
+/* ====================================================================================================
+    Pagination UI Customization
+   ==================================================================================================== */
 
 
 
+/* 페이지네이션의 요소들을 정렬합니다. */
 .pagination__customized {
     display: flex;
     align-items: center;
@@ -13,6 +14,7 @@
 }
 
 
+/* 페이지네이션 버튼 간 간격을 조절합니다. */
 .pagination__list {
     display: flex;
     align-items: center;
@@ -24,23 +26,26 @@
 }
 
 
+/* 페이지 버튼을 스타일링합니다. */
 .pagination__link {
     box-sizing: border-box;
-
     position: relative;
 
+    // 버튼 내 요소를 가운데 정렬합니다.
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center;  // 세로축 가운데 정렬
+    justify-content: center;  // 가로축 가운데 정렬
 
+    // 버튼의 크기를 조절합니다.
     min-width: 30px;
     height: 28px;
+    padding: 0 0.5rem;
 
-    padding: 0 7px;
-
+    // 테두리를 설정합니다.
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: 0.25rem;
 
+    // 폰트의 크기와 색상을 조절합니다.
     font-size: 14px;
     font-weight: 400;
     line-height: 1;
@@ -52,6 +57,7 @@
 }
 
 
+/* 선택된 버튼에 강조효과를 적용합니다. */
 .pagination__item.is-selected > .pagination__link {
     border-color: #0F4C81;
     color: #0F4C81;
@@ -59,9 +65,10 @@
 }
 
 
+/* 비활성화된 버튼을 스타일링합니다. */
 .pagination__item.is-disabled > .pagination__link {
     opacity: 0.4;
-    cursor: not-allowed;
+    cursor: default;
     pointer-events: none;
 }
 
@@ -80,6 +87,7 @@
 }
 
 
+/* 페이지 버튼에 밑줄이 생기지 않도록 설정합니다. */
 .pagination__customized .pagination__link:hover {
     text-decoration: none !important;
 }
@@ -87,5 +95,5 @@
 
 
 /* ==========================================================================
-    END OF PAGINATION UI CUSTOMIZATION
+    End of Pagination UI Customization
    ========================================================================== */
