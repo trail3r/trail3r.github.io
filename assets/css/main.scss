@@ -5,14 +5,25 @@ search: false
 
 @charset "utf-8";
 
+/* 사용자 정의 변수 */
 @import "customs/fonts";  // Font 추가
 @import "customs/variables";  // 사용자 정의 변수 추가
 
+
+/* Minimal Mistakes */
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
+
+/* 커스텀 아이콘 스타일링 */
 @import "customs/sidebar_link_icon";  // Author profile 내 커스텀 아이콘 스타일링
 @import "customs/footer_link_icon";  // Footer 내 커스텀 아이콘 스타일링
 
+
+/* 블로그 메인 페이지 스타일링 */
+@import "customs/home-image";  // 메인 페이지 이미지 스타일링
+
+
+/* 게시판 스타일링 */
 @import "customs/pagination";  // Pagination 스타일링
 @import "customs/bulletin";  // 게시판 스타일링
