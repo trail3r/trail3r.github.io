@@ -1,6 +1,10 @@
 ---
 title: "캠퍼스 라이프"
-layout: archive
+layout: custom
 categories: ["캠퍼스 라이프"]
 permalink: /categories/campuslife/
+
+pagination:
+    enabled: true
+    category: ["캠퍼스 라이프"]
 ---

@@ -8,6 +8,18 @@
    Common Bulletin Layout Settings
    ==================================================================================================== */
 
+
+
+  
+/* 페이지의 제목 크기를 조절합니다. */
+.archive {
+    .page__title {
+    font-size: $large-font-size;
+    margin: 0 0 1.5rem;
+    }
+}
+
+
 .bulletin {
     --teaser_ratio: var(--teaser-image-ratio, 4 / 5);
 
@@ -88,7 +100,7 @@
 
     /* 게시글 간 구분선을 추가합니다. */
     .bulletin-item {
-        padding: 1rem 0;
+        padding: 0.5rem 0;
         border-bottom: 1px solid $extra-light-gray;
     }
 
@@ -236,6 +248,11 @@
     .bulletin-item__teaser {
         width: 15%;
     }
+
+    .bulletin-item__represent {
+        line-height: 1.4;
+        min-height: calc(1.4em * e);
+    }
 }
 
 
@@ -298,7 +315,7 @@
     }
 
     .bulletin-item {
-        padding: 0.5rem 0;
+        padding: 0.25rem 0;
     }
 
     .bulletin-item__link {
