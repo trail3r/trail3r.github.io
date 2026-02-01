@@ -1,0 +1,94 @@
+{%- comment -%}
+    파일: _includes/customs/main_page_recent_posts.html
+
+    목적:
+        - 블로그 메인 페이지에 최근 업로드된 게시글을 렌더링합니다.
+
+    속성(Attributes):
+        - (optional) layout(문자열): 최근 업로드된 게시글을 노출하고 싶은 레이아웃을 설정합니다. (기본값: "card")
+        - (optional) teaser_image_ratio(문자열): 티저 이미지의 비율을 설정합니다. (기본값: "4/5")
+        - (optional) columns(정수형): 한 줄에 노출하고 싶은 최근 업로드된 게시글의 개수를 설정합니다. (기본값: 6(갤러리형), 3(카드형))
+        - (optional) rows(정수형): 노출하고 싶은 최근 업로드된 게시글의 행 수를 설정합니다. (기본값: 3)
+        - (optional) contain_notice(논리형): 최근 업로드된 게시글 목록에 공지사항을 포함시킬지 여부를 설정합니다. (기본값: false)
+{%- endcomment -%}
+
+
+
+{%- comment -%} 최근 업로드된 게시글을 노출하고 싶은 레이아웃을 설정합니다. {%- endcomment -%}
+{%- assign layout = include.layout | default: "card" -%}
+
+
+{%- comment -%} 티저 이미지의 비율을 설정합니다. 기본값은 가로:세로 = 4:5 비율입니다. {%- endcomment -%}
+{%- assign teaser_image_ratio = include.teaser_image_ratio | default: "4/5" -%}
+
+
+{%- comment -%} 한 줄에 노출하고 싶은 최근 업로드된 게시글의 개수를 설정합니다. {%- endcomment -%}
+{%- if layout == "card" -%}
+    {%- assign columns = include.columns | default: 3 -%}
+{%- else -%}
+    {%- assign columns = include.columns | default: 6 -%}
+{%- endif -%}
+
+
+{%- comment -%} 노출하고 싶은 최근 업로드된 게시글의 행 수를 설정합니다. {%- endcomment -%}
+{%- assign rows = include.rows | default: 3 -%}
+{%- assign limit = columns | times: rows -%}
+
+
+{%- comment -%} 최근 업로드된 게시글 목록에 공지사항도 함께 표시할지 여부를 설정합니다. 기본값은 "노출하지 않음(false)"입니다. {%- endcomment -%}
+{%- assign contain_notice = include.contain_notice | default: false -%}
+{%- if include.contain_notice -%}
+    {% assign recent_posts = site.posts | slice: 0, limit %}
+{%- else -%}
+    {% assign recent_posts = site.posts | where_exp: "post", "post.notice != true" | slice: 0, limit %}
+{%- endif -%}
+
+
+
+{%- comment -%} 최근 업로드된 게시글을 렌더링합니다. {%- endcomment -%}
+<article class="recent-posts recent-posts--{{ layout }}">
+    <h2 class="archive__title">최근 업로드된 게시글</h2>
+
+    <div class="recent-posts__grid" style="--columns: {{ columns }}; --teaser-image-ratio: {{ teaser_image_ratio }};">
+        {%- for post in recent_posts -%}
+            {%- assign represent = "" -%}
+
+            {%- if post.content contains "<!-- represent -->" -%}
+                {%- assign represent_contents = post.content | split: "<!-- represent -->" | last | split: "<!-- /represent -->" | first -%}
+                {%- assign represent = represent_contents | markdownify | strip_html | replace: "\n", " " | strip -%}
+            {%- endif -%}
+
+            <div class="recent-posts__item">
+                <a href="{{ post.url | relative_url }}" class="recent-posts__link">
+                    <div class="recent-posts__teaser{% unless post.header.teaser %} is-empty{% endunless %}">
+                        {%- if post.header.teaser -%}
+                            <img src="{{ post.header.teaser | relative_url }}" alt="{{ post.title | escape_once }}">
+                        {%- else -%}
+                            <span class="recent-posts__teaser-placeholder" aria-hidden="true"></span>
+                        {%- endif -%}
+                    </div>
+
+                    <div class="recent-posts__body">
+                        <h3 class="recent-posts__title">{{ post.title }}</h3>
+
+                        {%- if post.subtitle -%}
+                            <p class="recent-posts__subtitle">{{ post.subtitle | escape_once }}</p>
+                        {%- else -%}
+                            <p class="recent-posts__subtitle is-empty" aria-hidden="true">&nbsp;</p>
+                        {%- endif -%}
+
+                        {%- if represent -%}
+                            <p class="recent-posts__represent">{{ represent }}</p>
+                        {%- else -%}
+                            <p class="recent-posts__represent is-empty" aria-hidden="true">&nbsp;</p>
+                        {%- endif -%}
+
+                        {%- if post.date -%}
+                            <p class="recent-posts__date">{{ post.date | date: "%Y. %m. %d" }}</p>
+                        {%- endif -%}
+                    </div>
+                </a>
+            </div>
+        {%- endfor -%}
+    </div>
+</article>

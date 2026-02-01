@@ -1,0 +1,205 @@
+/* ====================================================================================================
+   Home Recent Posts Customization
+   ==================================================================================================== */
+
+
+
+/* 공지사항과 최근 업로드된 게시글 사이의 간격을 조절합니다. */
+.recent-posts {
+    .archive__subtitle {
+        margin: 3rem 0 0.5rem 0;
+    }
+}
+
+
+/* 최근 업로드된 게시글을 노출할 공간의 격자 간격을 계산합니다. */
+.recent-posts__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns, 5), minmax(0, 1fr));
+    gap: 1rem;
+}
+
+
+/* 최근 업로드된 게시글의 티저 이미지 크기를 조절합니다. */
+.recent-posts__teaser {
+    aspect-ratio: var(--teaser-image-ratio, 4 / 5);
+    width: 100%;
+
+    // 티저 이미지를 가운데 정렬합니다.
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.recent-posts__teaser-placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 최근 업로드된 게시글의 요소에 약간의 여백을 추가합니다. */
+.recent-posts__body {
+    padding: 0.1rem;
+}
+
+
+/* UX를 조절합니다. */
+.recent-posts a {
+    color: $gray;
+    text-decoration: none;
+
+    &:hover {
+        color: $blue;
+        text-decoration: none !important;
+    }
+}
+
+
+/* 최근 업로드된 게시글의 요소들을 스타일링합니다. */
+.recent-posts__grid {
+    /* 최근 업로드된 게시글의 제목 표시 형식을 설정합니다. */
+    .recent-posts__title {
+        margin: 0.25rem 0 0 0;
+
+        // 제목의 폰트 크기와 두께를 조절합니다.
+        font-size: $small-font-size;
+        font-weight: $bold;
+        line-height: $small-font-size;
+
+        // 제목이 표시되는 길이를 1줄로 제한합니다.
+        white-space: nowrap;
+        // 제목이 길어 넘치는 부분은 숨깁니다.
+        overflow: hidden;
+        // 제목이 길어 넘쳐 숨겨지는 부분을 "..."으로 표시합니다.
+        text-overflow: ellipsis;
+    }
+
+
+    /* 최근 업로드된 게시글의 부제목 표시 형식을 설정합니다. */
+    .recent-posts__subtitle {
+        font-size: $x-small-font-size;
+
+        // 부제목이 표시되는 길이를 1줄로 제한합니다.
+        white-space: nowrap;
+        // 부제목이 길어 넘치는 부분은 숨깁니다.
+        overflow: hidden;
+        // 부제목이 길어 넘쳐 숨겨지는 부분을 "..."으로 표시합니다.
+        text-overflow: ellipsis;
+
+        // 부제목이 비어있는 경우, 그 공간을 빈 공간으로 채워 레이아웃의 일관성을 유지합니다.
+        margin: 0 0 0.25rem 0;
+        line-height: 1.4;
+        min-height: 1.4em;
+
+        &.is-empty {
+            visibility: hidden;
+        }
+    }
+
+
+    /* 카드형 레이아웃에는 대표 문장을 노출합니다. */
+    .recent-posts__represent {
+        margin: 0.1rem 0;
+
+        font-size: $x-small-font-size;
+        
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &.is-empty {
+            visibility: hidden;
+        }
+    }
+
+
+    /* 최근 업로드된 게시글의 날짜 표시 형식을 설정합니다. */
+    .recent-posts__date {
+        font-size: $xx-small-font-size;
+        color: $gray;
+    }
+}
+
+
+
+/*
+   Home Recent Posts Layout - Card Type Customization
+   ==================================================================================================== */
+
+
+/* 최근 업로드된 게시글의 레이아웃이 카드형인 경우의 스타일을 조절합니다. */
+.recent-posts--card {
+    /* 카드형 레이아웃에서는 카드 사이의 간격을 줄입니다. */
+    .recent-posts__grid {
+        gap: 0.25rem;
+    }
+
+
+    /* 카드 내 구성 요소를 정렬합니다. */
+    .recent-posts__link {
+        display: flex;
+        gap: 0.25rem;
+        align-items: stretch;
+    }
+
+
+    /* 카드 내 티저 이미지의 크기를 설정합니다. */
+    .recent-posts__teaser {
+        flex: 0 0 30%;
+    }
+
+
+    /* 카드 내 텍스트 영역을 스타일링합니다. */
+    .recent-posts__body {
+        display: flex;
+        flex: 1 1 auto;
+
+        flex-direction: column;
+        justify-content: flex-start;
+        
+        padding: 0.1rem;
+        min-width: 0;
+    }
+
+
+    /* 제목과 부제목 사이의 간격을 조절합니다. */
+    .recent-posts__title {
+        margin-bottom: 0.25rem;
+    }
+
+
+    /* 날짜 사이의 간격을 조절합니다. */
+    .recent-posts__date {
+        margin-top: auto;
+    }
+}
+
+
+
+/*
+   Home Recent Posts Layout - Gallery Type Customization
+   ==================================================================================================== */
+
+.recent-posts--gallery {
+    .recent-posts__represent {
+        display: none;
+    }
+}
+
+
+
+/* ====================================================================================================
+   End of Home Recent Posts Customization
+   ==================================================================================================== */

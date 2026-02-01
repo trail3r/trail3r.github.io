@@ -23,7 +23,7 @@ banners:
 
 
 
-<!-- 블로그의 메인 페이지에 이미지를 렌더링합니다. -->
+<!-- 블로그의 메인 페이지에 이미지를 렌더링 합니다. -->
 <div class="home__body">
     <a class="home__link" href="https://trail3r.github.io/">
         <img class="home__image" src="assets/images/blog_main_image.png" alt="Home main image">
@@ -31,5 +31,9 @@ banners:
 </div>
 
 
-<!-- 블로그의 메인 페이지에 배너를 렌더링합니다. -->
+<!-- 블로그의 메인 페이지에 배너를 렌더링 합니다. -->
 {%- include customs/main_page_banners.html -%}
+
+
+<!-- 블로그의 메인 페이지에 최근 업로드된 게시글을 렌더링 합니다. -->
+{%- include customs/main_page_recent_posts.html layout="card" -%}
