@@ -1,0 +1,70 @@
+{%- comment -%}
+    파일: _includes/customs/feature-row.html
+
+    목적:
+        - 블로그 메인 페이지에 배너를 렌더링합니다.
+
+    속성(Attributes):
+        - banners(*) : 배너 데이터를 조회합니다.
+        - (optional) columns(정수형): 한 줄에 노출할 배너의 개수를 설정합니다. (기본값: 5)
+{%- endcomment -%}
+
+
+
+{%- comment -%} 배너 데이터를 조회합니다. {%- endcomment -%}
+{%- if include.id -%}
+    {%- assign banners = page[include.id] -%}
+{%- else -%}
+    {%- assign banners = page.banners -%}
+{%- endif -%}
+
+
+{%- comment -%} 한 줄에 노출할 배너의 개수를 설정합니다. 기본값은 5열입니다. {%- endcomment -%}
+{%- if include.columns -%}
+    {%- assign columns = include.columns -%}
+{%- else -%}
+    {%- assign columns = 5 -%}
+{%- endif -%}
+
+
+{%- if banners and banners.size > 0 -%}
+<div class="feature__wrapper feature__wrapper__grid" style="--columns: {{ columns }};">
+    
+    {%- for banner in banners -%}
+        
+        <div class="feature__item">
+            <div class="archive__item">
+                {%- if banner.url -%}
+                    <a class="archive__item-link" href="{{ banner.url | relative_url }}">
+                {%- endif -%}
+
+                {%- if banner.image_path -%}
+                    <div class="archive__item-teaser">
+                        <img src="{{ banner.image_path | relative_url }}" alt="{{ banner.alt | default: banner.title }}">
+                        {%- if banner.image_caption -%}
+                            <span class="archive__item-caption">{{ banner.image_caption | markdownify | remove: "<p>" | remove: "</p>" }}</span>
+                        {%- endif -%}
+                    </div>
+                {%- endif -%}
+
+                <div class="archive__item-body">
+                    {%- if banner.title -%}
+                        <h2 class="archive__item-title">{{ banner.title }}</h2>
+                    {%- endif %}
+
+                    {%- if banner.excerpt -%}
+                        <div class="archive__item-excerpt">{{ banner.excerpt | markdownify }}</div>
+                    {%- endif -%}
+                </div>
+
+                {%- if banner.url -%}
+                    </a>
+                {%- endif -%}
+                
+            </div>
+        </div>
+
+    {%- endfor -%}
+
+</div>
+{%- endif -%}
