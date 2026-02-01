@@ -10,4 +10,4 @@ pagination:
     per_page: 10
 ---
 
-{%- include customs/pagination.html -%}
+{%- include customs/bulletin.html -%}

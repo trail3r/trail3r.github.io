@@ -1,0 +1,146 @@
+{%- comment -%}
+    파일: _includes/customs/bulletin.html
+
+    목적: 게시판을 단일 마크업으로 렌더링하고, JS와 CSS로 카드형/갤러리형/리스트형 레이아웃을 전환합니다.
+
+    속성(Attributes):
+        - (optional) mode(문자열): 게시판의 동작 모드를 설정합니다. (기본값: "category")
+            - "category": 특정 카테고리에 해당하는 게시글만 렌더링 합니다.
+            - "all": 전체 게시글을 렌더링 합니다.
+        - (optional) category(배열): 필터링할 카테고리를 설정합니다. (기본값: page.categories[0])
+            - 배열 내 요소가 여러 개인 경우에는 첫 번째 요소를 필터로 사용합니다.
+        - (optional) layout(문자열): 게시판의 기본 타입을 설정합니다. (기본값: "card")
+            - "card" | "gallery" | "list" 중 하나를 선택할 수 있습니다.
+            - 타입 전환 기능(*layout_switch)이 켜져 있으면 기본값으로서 사용됩니다.
+        - (optional) columns(정수형): 갤러리형("gallery") 레이아웃에서 한 줄에 노출할 게시글의 개수를 설정합니다. (기본값: 5)
+        - (optional) teaser_image_ratio(문자열): 티저 이미지의 비율을 설정합니다. (기본값: "4/5")
+            - 반드시 비율을 포함한 문자열만 전달받아야 합니다.
+        - (optional) layout_switch(불리언): 타입 전환 버튼 표시 여부를 설정합니다. (기본값: true)
+        - (optional) pagination(불리언): paginator 객체의 사용 여부를 설정합니다. (기본값: true)
+        - (optional: 내부 참조 요소) _storage_key(문자열): localStorage 저장 키를 지정합니다. (기본값: 경로 기반 자동 생성)
+{%- endcomment -%}
+
+
+
+{%- comment -%} 게시판의 동작 모드를 설정합니다. "category" 외 다른 키워드가 전달되면 전체 게시글을 렌더링 합니다. {%- endcomment -%}
+{%- assign mode = include.mode | default: "category" | downcase | strip -%}
+
+
+{%- comment -%} 게시판의 기본 타입을 설정합니다. 기본값은 카드형("card")입니다. {%- endcomment -%}
+{%- assign default_layout = include.layout | default: "card" | downcase | strip -%}
+
+
+{%- comment -%} 게시판의 타입이 갤러리형("gallery")일 때 한 줄에 보여질 게시글의 개수를 설정합니다. 기본값은 5개입니다. {%- endcomment -%}
+{%- assign columns = include.columns | default: 5 -%}
+
+
+{%- comment -%} 티저 이미지의 비율을 설정합니다. 기본값은 "4/5"로, 가로:세로 = 4:5 비율입니다. {%- endcomment -%}
+{%- assign teaser_image_ratio = include.teaser_image_ratio | default: "4/5" -%}
+
+
+{%- comment -%} 타입 전환 버튼 표시 여부를 설정합니다. false인 경우, 게시판의 기본 타입에서 변경할 수 없습니다. 기본값은 true(표시함)입니다. {%- endcomment -%}
+{%- assign layout_switch = include.layout_switch | default: true -%}
+
+
+{%- comment -%} 페이지네이션의 활성화 여부를 설정합니다. 기본값은 true(활성화)입니다. {%- endcomment -%}
+{%- assign active_pagination = include.pagination | default: true -%}
+
+
+{%- comment -%}  {%- endcomment -%}
+{%- assign _storage_key = include._storage_key | default: "" | strip -%}
+
+
+{%- comment -%} posts 소스를 설정합니다. 페이지네이터가 생성하는 posts를 우선으로 사용합니다. {%- endcomment -%}
+{%- if active_pagination and paginator -%}
+    {%- assign posts = paginator.posts -%}
+{%- else -%}
+    {%- assign posts = site.posts -%}
+{%- endif -%}
+
+
+{%- comment -%} 필터링할 카테고리를 설정합니다. 기본값은 페이지별 categories 배열 중 첫 번째 요소입니다. {%- endcomment -%}
+{%- assign filter = include.category | first | default: page.categories | first | default: "" -%}
+{%- if mode == "category" and filter != "" -%}
+    {%- assign posts = posts | where_exp: "post", "post.categories contains filter" -%}
+{%- endif -%}
+
+
+{%- if _storage_key == "" -%}
+    {%- if mode == "category" and filter != "" -%}
+        {%- assign _storage_key = "category:" | append: filter -%}
+    {%- else -%}
+        {%- assign _storage_key = "bulletin:global" -%}
+    {%- endif -%}
+{%- endif -%}
+
+
+
+{%- comment -%} RENDERING {%- endcomment -%}
+{%- if posts and posts.size > 0 -%}
+<section class="bulletin bulletin--{{ default_layout }}" data-bulletin data-default-layout="{{ default_layout }}" data-storage-key="{{ _storage_key | escape }}" style="--teaser-image-ratio: {{ teaser_image_ratio }}; --columns: {{ columns }};">
+    
+    {%- if layout_switch -%}
+        <div class="bulletin__button" aria-label="Layout type">
+            {%- assign layouts = "card, gallery, list" | split: "," -%}
+            {%- for type in layouts -%}
+                {%- assign layout = type | strip -%}
+                <button  type="button" class="bulletin__button-body" data-bulletin-layout="{{ layout }}" aria-pressed="{%- if default_layout == layout -%}true{%- else -%}false{%- endif -%}" title="{{ layout }} layout">
+                    {%- include customs/bulletin-layout-icon/layout-type-{{ layout }}.svg -%}
+                </button>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+
+
+    <div class="bulletin__layout">
+        {%- for post in posts -%}
+            {%- assign represent = "" -%}
+
+            {%- if post.content contains "<!-- represent -->" -%}
+                {%- assign represent_contents = post.content | split: "<!-- represent -->" | last | split: "<!-- /represent -->" | first -%}
+                {%- assign represent = represent_contents | markdownify | strip_html | replace: "\n", " " | strip -%}
+            {%- endif -%}
+
+            <article class="bulletin-item">
+                <a class="bulletin-item__link" href="{{ post.url | relative_url }}">
+                    <div class="bulletin-item__teaser{% unless post.header.teaser %} is-empty{% endunless %}">
+                        {%- if post.header.teaser -%}
+                            <img src="{{ post.header.teaser | relative_url }}" alt="{{ post.title }}">
+                        {%- else -%}
+                            <span class="bulletin-item__teaser-placeholder" aria-hidden="true"></span>
+                        {%- endif -%}
+                    </div>
+
+                    <div class="bulletin-item__body">
+                        <h3 class="bulletin-item__title">{{ post.title }}</h3>
+
+                        <div class="bulletin-item__meta">
+                            {%- if post.subtitle -%}
+                                <p class="bulletin-item__subtitle">{{ post.subtitle }}</p>
+                            {%- else -%}
+                                <p class="bulletin-item__subtitle is empty" aria-hidden="true">&nbsp;</p>
+                            {%- endif -%}
+
+                            {%- if represent != "" -%}
+                                <p class="bulletin-item__represent">{{ represent }}</p>
+                            {%- else -%}
+                                <p class="bulletin-item__subtitle is empty" aria-hidden="true">&nbsp;</p>
+                            {%- endif -%}
+
+                            {%- if post.date -%}
+                                <time class="bulletin-item__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y. %m. %d" }}</time>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                </a>
+            </article>
+        {%- endfor -%}
+    </div>
+
+
+    {%- comment -%} PAGINATION {%- endcomment -%}
+    {%- if active_pagination and paginator -%}
+        {%- include customs/pagination.html -%}
+    {%- endif -%}
+</section>
+{%- endif -%}
