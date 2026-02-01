@@ -32,4 +32,4 @@ banners:
 
 
 <!-- 블로그의 메인 페이지에 배너를 렌더링합니다. -->
-{%- include customs/banners.html -%}
+{%- include customs/main_page_banners.html -%}
