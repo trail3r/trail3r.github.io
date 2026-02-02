@@ -23,7 +23,8 @@ search: false
 /* 블로그 메인 페이지 스타일링 */
 @import "customs/blog_main_image";  // 메인 페이지 이미지 스타일링
 @import "customs/main_page_banners";  // 메인 페이지 배너 스타일링
-@import "customs/main_page_recent_posts";
+@import "customs/main_page_notice";  // 메인 페이지 대표 게시글 스타일링
+@import "customs/main_page_recent_posts";  // 메인 페이지 최근 업로드된 게시글 스타일링
 
 
 /* 게시판 스타일링 */

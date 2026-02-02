@@ -35,5 +35,9 @@ banners:
 {%- include customs/main_page_banners.html -%}
 
 
+<!-- 볼로그의 메인 페이지에 대표 게시글을 렌더링 합니다. -->
+{%- include customs/main_page_notice.html -%}
+
+
 <!-- 블로그의 메인 페이지에 최근 업로드된 게시글을 렌더링 합니다. -->
 {%- include customs/main_page_recent_posts.html layout="card" -%}

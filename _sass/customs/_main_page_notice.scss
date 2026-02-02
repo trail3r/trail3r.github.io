@@ -1,0 +1,129 @@
+/* ====================================================================================================
+   Main Page Notice Customization
+   ==================================================================================================== */
+
+
+/* 대표 게시글을 스타일링합니다. */
+.notice {
+    // 대표 게시글의 박스 디자인을 제거합니다.
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+
+
+    // UX를 조절합니다.
+    a {
+        color: $gray;
+        text-decoration: none;
+
+        &:hover {
+            color: $blue;
+            text-decoration: none !important;
+        }
+    }
+
+    // 대표 게시글 제목을 스타일링합니다.
+    .archive__title {
+        font-size: $standard-font-size;
+        color: $black;
+    }
+}
+
+
+/* 대표 게시글의 티저 이미지 크기를 조절합니다. */
+.notice__teaser {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+
+    // 티저 이미지를 가운데 정렬합니다.
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.notice__teaser-placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 대표 게시글 구성 요소 내에 약간의 여백을 추가합니다. */
+.notice__body {
+    padding: 0.1rem;
+}
+
+
+/* 대표 게시글의 제목 표시 형식을 설정합니다. */
+.notice__title {
+    // 제목의 폰트 크기와 두께를 설정합니다.
+    font-size: $small-font-size;
+    font-weight: $bold;
+
+    margin: 0.25rem 0 0 0;
+
+    // 제목이 표시되는 길이를 1줄로 제한합니다.
+    white-space: nowrap;
+    // 제목이 길어 넘치는 부분은 숨깁니다.
+    overflow: hidden;
+    // 제목이 길어 넘쳐 숨겨지는 부분을 "..."으로 표시합니다.
+    text-overflow: ellipsis;
+}
+
+
+/* 대표 게시글의 요소를 스타일링합니다. */
+.notice__grid {
+    // 대표 게시글을 배치하는 격자의 간격을 계산합니다.
+    --columns: var(--columns, 5);
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    gap: 0.5rem;
+
+    // 대표 게시글의 부제목 표시 형식을 설정합니다.
+    .notice__subtitle {
+        font-size: $x-small-font-size;
+
+        // 부제목이 표시되는 길이를 1줄로 제한합니다.
+        white-space: nowrap;
+        // 부제목이 길어 넘치는 부분은 숨깁니다.
+        overflow: hidden;
+        // 부제목이 길어 넘쳐 숨겨지는 부분을 "..."으로 표시합니다.
+        text-overflow: ellipsis;
+
+        margin: 0 0 0.25rem 0;
+
+        // 대표 게시글의 부제목이 비어있는 경우, 그 공간을 빈 공간으로 채워 레이아웃의 일관성을 유지합니다.
+        line-height: 1.4;
+        min-height: 1.4em;
+
+        &.is-empty {
+            visibility: hidden;
+        }
+    }
+
+
+    // 대표 게시글의 날짜 표시 형식을 설정합니다.
+    .notice__date {
+        font-size: $xx-small-font-size;
+        color: $gray;
+
+        margin: 0 0 0.5rem 0;
+    }
+}
+
+
+
+/* ====================================================================================================
+   End of Main Page Notice Customization
+   ==================================================================================================== */
