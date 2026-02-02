@@ -6,7 +6,9 @@
 
 /* 공지사항과 최근 업로드된 게시글 사이의 간격을 조절합니다. */
 .recent-posts {
-    .archive__subtitle {
+    .archive__title {
+        font-size: $standard-font-size;
+        color: $black;
         margin: 3rem 0 0.5rem 0;
     }
 }
@@ -87,7 +89,7 @@
     /* 최근 업로드된 게시글의 부제목 표시 형식을 설정합니다. */
     .recent-posts__subtitle {
         font-size: $x-small-font-size;
-
+        
         // 부제목이 표시되는 길이를 1줄로 제한합니다.
         white-space: nowrap;
         // 부제목이 길어 넘치는 부분은 숨깁니다.
@@ -176,7 +178,7 @@
 
     /* 제목과 부제목 사이의 간격을 조절합니다. */
     .recent-posts__title {
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.1rem;
     }
 
 
