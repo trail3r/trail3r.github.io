@@ -1,0 +1,70 @@
+/* ====================================================================================================
+   Sidebar Customizations
+   ==================================================================================================== */
+
+
+
+/* 블로그 좌측 사이드바를 스타일링합니다. */
+.sidebar {
+    font-family: $global-font-family;
+
+
+    // 사이드바 내 글자 간격을 조절합니다.
+    li,
+    p {
+        line-height: 1.2;
+    }
+
+
+    // Author Profile의 이름 크기를 조절합니다.
+    .author__name {
+        font-size: $standard-font-size;
+    }
+
+
+    // Author Profile의 소개글 크기를 조절합니다.
+    .author__bio {
+        font-size: $x-small-font-size;
+        margin: 0.25rem 0 1rem 0;
+
+        p {
+            font-size: $x-small-font-size;
+            margin: 0.25rem 0 1rem 0;
+        }
+    }
+
+
+    // Author Profile의 소셜 링크 크기를 조절합니다.
+    .author__urls {
+        font-size: $small-font-size;
+
+        ul,
+        li {
+            margin-bottom: 0.35rem;
+        }
+    }
+
+
+    // 네비게이션 메뉴의 글꼴과 크기를 조절합니다.
+    .nav__items {
+        .nav__sub-title {
+            font-size: $x-small-font-size;
+            margin: 0.5rem 0 0.25rem 0;
+        }
+
+        a {
+            font-size: $xx-small-font-size;
+
+            // 현재 위치한 카테고리에 속한 경우 글씨를 굵게 표시합니다.
+            &.active {
+                font-weight: $semibold;
+            }
+        }
+    }
+}
+
+
+
+/* ====================================================================================================
+   End of Sidebar Customizations
+   ==================================================================================================== */
