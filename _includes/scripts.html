@@ -27,4 +27,14 @@
   {% endfor %}
 {% endif %}
 
+
+
+{%- comment -%} Customized Script를 불러옵니다. {%- endcomment -%}
+
+
+{%- comment -%} LaTex {%- endcomment -%}
+{%- include customs/LaTex.html -%}
+
+
+{%- comment -%} 게시판 레이아웃 전환 버튼 {%- endcomment -%}
 <script src="{{ '/assets/js/customs/bulletin_layout_switch.js' | relative_url }}"></script>
