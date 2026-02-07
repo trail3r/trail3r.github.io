@@ -1,0 +1,66 @@
+{%- comment -%}
+    파일: _includes/customs/post_pagination.html
+
+    목적: 게시글 하단에 나타나는 페이지네이션이 같은 카테고리 내에서만 이동할 수 있도록 렌더링합니다.
+
+    속성(Attributes):
+        - (optional) category(문자열): 페이지네이션이 작동할 카테고리를 지정합니다. (기본값: 현재 페이지의 categories 배열 중 첫 번째 요소)
+{%- endcomment -%}
+
+
+
+{%- comment -%} 필터링할 카테고리를 설정합니다. 기본값은 페이지별 categories 배열 중 첫 번째 요소입니다. {%- endcomment -%}
+{%- assign category = include.category | default: (page.categories | first) -%}
+
+{%- if category -%}
+    {%- assign posts = site.categories[category] | sort: "date" -%}
+{%- else -%}
+    {%- assign posts = site.posts | sort: "date" -%}
+{%- endif -%}
+
+
+{%- assign previous_post = nil -%}
+{%- assign next_post = nil -%}
+
+
+{%- for post in posts -%}
+    {%- if post.url == page.url -%}
+        {%- assign previous_index = forloop.index0 | minus: 1 -%}
+        {%- assign next_index = forloop.index0 | plus: 1 -%}
+
+        {%- if previous_index >= 0 -%}
+            {%- assign previous_post = posts[previous_index] -%}
+        {%- endif -%}
+
+        {%- if next_index < posts.size -%}
+            {%- assign next_post = posts[next_index] -%}
+        {%- endif -%}
+
+        {%- break -%}
+    {%- endif -%}
+{%- endfor -%}
+
+
+{%- if previous_post or next_post -%}
+    <nav class="milestone" aria-label="Post navigation within category">
+        {%- if previous_post -%}
+            <a class="junction" href="{{ previous_post.url | relative_url }}">
+                <span class="milepost">이전 글&nbsp;</span>{{ previous_post.title }}
+            </a>
+        {%- else -%}
+            <a class="junction disabled" href="#" aria-disabled="true" tabindex="-1">
+                첫 번째 게시글입니다.
+            </a>
+        {%- endif -%}
+
+        {%- if next_post -%}
+            <a class="junction" href="{{ next_post.url | relative_url }}">
+                <span class="milepost">다음 글&nbsp;</span>{{ next_post.title }}
+            </a>
+        {%- else -%}
+            <a class="junction disabled" href="#" aria-disabled="true" tabindex="-1">
+                가장 최근 게시글입니다.
+            </a>
+        {%- endif -%}
+    </nav>
+{%- endif -%}

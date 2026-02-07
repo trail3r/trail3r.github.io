@@ -1,0 +1,83 @@
+/* ====================================================================================================
+   Post Pagination Customization
+   ==================================================================================================== */
+
+.milestone {
+    // 이전 또는 다음 게시글로 이동하는 링크를 세로로 배치합니다.
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    // 링크를 배치하는 박스의 크기를 설정합니다.
+    width: 100%;
+    margin: 1rem 0;
+
+    border: none;
+
+    // 링크 박스 내 텍스트 배치를 설정합니다.
+    .junction {
+        // 텍스트를 블록으로 설정합니다.
+        display: block;
+        padding: 0.5rem 0.5rem;
+
+        // 텍스트 블록을 구분하기 위한 선을 추가합니다.
+        border-top: 1px solid $light-gray;
+        border-bottom: 1px solid $light-gray;
+
+        // 텍스트를 중앙 정렬합니다.
+        text-align: center;
+        text-decoration: none;
+
+        // 폰트를 설정합니다.
+        font-family: $sans-serif;
+        font-size: $small-font-size;
+        font-weight: $bold;
+        color: $gray;
+
+        // 제목이 표시되는 형태를 설정합니다.
+        white-space: nowrap;  // 제목이 표시되는 길이를 1줄로 제한합니다.
+        overflow: hidden;  // 제목이 긴 경우, 넘치는 부분을 숨깁니다.
+        text-overflow: ellipsis;  // 제목이 길어 넘치는 부분을 "..."으로 표시합니다.
+
+        // 제목이 길어 레이아웃이 깨지는 것을 방지합니다.
+        min-width: 0;
+
+        // "이전 글"과 "다음 글"의 폰트를 설정합니다.
+        .milepost {
+            font-weight: $bold;
+            color: $sky-blue;
+            margin-right: 0.5rem;
+        }
+
+        // 마우스를 올렸을 때의 강조 효과를 적용합니다.
+        &:hover {
+            color: $black;
+            text-decoration: none;
+
+            .milepost {
+                color: $blue;
+                text-decoration: none;
+            }
+        }
+
+        &:focus-visible {
+            color: $black;
+            text-decoration: none;
+        }
+
+        .disabled {
+            color: $light-gray;
+            text-decoration: none;
+            opacity: 0.5;
+
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+}
+
+
+
+/* ====================================================================================================
+   End of Post Pagination Customization
+   ==================================================================================================== */
