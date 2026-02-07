@@ -13,9 +13,9 @@
 {%- assign category = include.category | default: (page.categories | first) -%}
 
 {%- if category -%}
-    {%- assign posts = site.categories[category] -%}
+    {%- assign posts = site.categories[category] | reverse -%}
 {%- else -%}
-    {%- assign posts = site.posts -%}
+    {%- assign posts = site.posts | reverse -%}
 {%- endif -%}
 
 
