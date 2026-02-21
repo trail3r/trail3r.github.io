@@ -160,16 +160,16 @@ author:
   # email            :
   links:
     - label: "Gmail"
-      icon: "fas fa-fw fa-envelope-square"
+      icon: "assets/images/links-icon/gmail.svg"
       url: "mailto:gusdnr7223@gmail.com"
     - label: "네이버 블로그"
-      icon: "fas fa-fw fa-link"
+      icon: "assets/images/links-icon/naver-blog.svg"
       url: "https://blog.naver.com/trail3r"
     - label: "GitHub"
-      icon: "fab fa-fw fa-github"
+      icon: "assets/images/links-icon/github.svg"
       url: "https://github.com/trail3r"
     - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
+      icon: "assets/images/links-icon/instagram.svg"
       url: "https://instagram.com/trail3r__"
 
 
@@ -180,13 +180,13 @@ author:
 footer:
   links:
     - label: "네이버 블로그"
-      icon: "fas fa-fw fa-link"
+      icon: "assets/images/links-icon/naver-blog.svg"
       url: "https://blog.naver.com/trail3r"
     - label: "GitHub"
-      icon: "fab fa-fw fa-github"
+      icon: "assets/images/links-icon/github.svg"
       url: "https://github.com/trail3r"
     - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
+      icon: "assets/images/links-icon/instagram.svg"
       url: "https://instagram.com/trail3r__"
   since: "2026"
 

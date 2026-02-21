@@ -1,0 +1,26 @@
+{%- comment -%} ====================================================================================================
+파일(File):
+  - _includes/customs/links-icon.html
+
+역할(Role):
+  - Minimal Mistakes의 링크 아이콘에서 FontAwesome 클래스뿐만 아니라 SVG 또는 PNG 이미지도 사용할 수 있게 렌더링 범위를 확장합니다.
+
+인자(Arguments):
+  - include.icon(문자열): 이미지 경로(".../*.svg" 또는 ".../*.png") 또는 FontAwesome 클래스 문자열
+
+의존성(Dependencies):
+  - 이미지 파일의 확장자는 "*.svg" 또는 "*.png" 형태여야만 합니다.
+
+참고사항(Notes):
+  - _includes/customs/author-profile.html에서 호출하여 사용됩니다.
+  - _includes/footer/customs.html에서 호출하여 사용됩니다.
+================================================================================================= {%- endcomment -%}
+
+{%- assign icon = include.icon | default: "" | remove: '"' | strip -%}
+
+
+{%- if icon contains ".svg" or icon contains ".png" -%}
+  <img class="links-icon" src="{{ icon | relative_url }}" alt="" aria-hidden="true">
+{%- else -%}
+  <i class="{{ icon | default: 'fas fa-link' }}" aria-hidden="true"></i>
+{%- endif -%}

@@ -1,3 +1,67 @@
-<!-- start custom footer snippets -->
+{%- comment -%} ====================================================================================================
+파일(File):
+    - _includes/footer/custom.html
 
-<!-- end custom footer snippets -->
+역할(Role):
+    - 푸터(Footer)의 링크 아이콘(author.links)을 렌더링할 때 렌더링을 "links-icon.html"에게 위임합니다.
+
+매개변수(Parameters):
+    - link.icon(문자열): 이미지 경로(".../*.svg" 또는 ".../*.png") 또는 FontAwesome 클래스 문자열
+
+참고사항(Notes):
+    - Minimal Mistakes테마의 기본 footer를 오버라이드(override)하였습니다.
+    - _layout/default.html에서 호출하여 사용됩니다.
+================================================================================================= {%- endcomment -%}
+
+{%- assign show_atom = site.atom_feed.hide != true -%}
+
+
+{%- if site.footer.links or show_atom -%}
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    {%- if site.data.ui-text[site.locale].follow_label -%}
+      <li>
+        <strong>{{ site.data.ui-text[site.locale].follow_label }}</strong>
+      </li>
+    {%- endif -%}
+
+    {%- if site.footer.links -%}
+      {%- for link in site.footer.links -%}
+        {%- if link.label and link.url -%}
+          <li>
+            <a href="{{ link.url }}" rel="nofollow noopener noreferrer">
+              {%- include customs/links-icon.html icon=link.icon -%}
+              {{ link.label | escape_once | strip }}
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if show_atom -%}
+      <li>
+        <a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i>
+            {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}
+        </a>
+      </li>
+    {%- endif -%}
+  </ul>
+</div>
+{%- endif -%}
+
+<div class="page__footer-copyright">
+  &copy;
+  {%- assign site_time = site.time | date: '%Y' -%}
+  {%- if site.footer.since and site_time != site.footer.since -%}
+    {{ site.footer.since }} - 
+  {% endif %}
+  {{ site_time }}
+  <a href="{{ site.copyright_url | default: site.url }}">
+    {{ site.copyright | default: site.title | escape_once | strip }}
+  </a>.
+  {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }}
+  <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a>
+  &amp;
+  <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.
+</div>
