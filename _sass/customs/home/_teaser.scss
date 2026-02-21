@@ -4,16 +4,16 @@
 
 
 .page__content {
-   .teaser__image {
-      display: block;
+  .teaser__image {
+    display: block;
 
-      width: 100%;
-      height: auto;
+    width: 100%;
+    height: auto;
 
-      margin: 0 0 0.5rem 0 !important;
+    margin: 0 0 0.5rem 0 !important;
 
-      &:hover {
-         box-shadow: none !important;
-      }
-   }
+    &:hover {
+      box-shadow: none !important;
+    }
+  }
 }
