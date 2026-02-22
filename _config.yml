@@ -1,38 +1,44 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve`. If you change this file, please restart the server process.
+# ====================================================================================================
+# Minimal Mistakes 기본 설정
+# [참고] https://mmistakes.github.io/minimal-mistakes/docs/configuration/
+# ====================================================================================================
 
-# Theme Settings
-#
-# Review documentation to determine if you should use `theme` or `remote_theme`
-# https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
-# theme                  : "minimal-mistakes-jekyll"
-# remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
-# Site Settings
-locale                   : "en-US"
-rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "Site Title"
-title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
-description              : "An amazing website."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-breadcrumbs              : # true, false (default)
-words_per_minute         : 200
-enable_copy_code_button  : # true, false (default)
-copyright                : # "copyright" name, defaults to site.title
-copyright_url            : # "copyright" URL, defaults to site.url
+# 
+# 테마 설정
+# ====================================================================================================
+minimal_mistakes_skin    : "default"
+
+
+
+# 
+# 블로그 설정
+# ====================================================================================================
+locale                   : "ko-KR"
+rtl                      : false
+title                    : "개구리의 밀실"
+title_separator          : "|"
+subtitle                 : 
+name                     : "Hyeon Wuk Park"
+description              : "일상 | 성균관대학교 | 응용AI융합학부 | 파이썬 | Python | 알고리즘 | Algorithm | 인공지능 | AI | Artificial Intelligence | Computer Vision | Notes"
+url                      : "https://trail3r.github.io"
+baseurl                  : ""
+repository               : "trail3r/trail3r.github.io"
+teaser                   : 
+logo                     : 
+masthead_title           : 
+breadcrumbs              : false
+words_per_minute         : 100
+enable_copy_code_button  : false
+copyright                : 
+copyright_url            : 
+
+
+
+# 
+# 댓글 설정
+# ====================================================================================================
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
@@ -62,15 +68,34 @@ comments:
   staticman:
     branch               : # "master"
     endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
+
+
+
+# 
+# 보안 설정
+# ====================================================================================================
 reCaptcha:
   siteKey                :
   secret                 :
+
+
+
+# 
+# 피드 설정
+# ====================================================================================================
 atom_feed:
   path                   : # blank (default) uses feed.xml
   hide                   : # true, false (default)
-search                   : # true, false (default)
-search_full_content      : # true, false (default)
-search_provider          : # lunr (default), algolia, google
+
+
+
+# 
+# 검색 기능 설정
+# ====================================================================================================
+search                   : true
+search_full_content      : true
+search_provider          : lunr
+
 lunr:
   search_within_pages    : # true, false (default)
 algolia:
@@ -81,14 +106,23 @@ algolia:
 google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
-# SEO Related
+
+
+
+# 
+# SEO 검색 엔진 설정
+# ====================================================================================================
 google_site_verification :
 bing_site_verification   :
 naver_site_verification  :
 yandex_site_verification :
 baidu_site_verification  :
 
-# Social Sharing
+
+
+# 
+# SNS 공유 설정
+# ====================================================================================================
 twitter:
   username               :
 facebook:
@@ -103,7 +137,11 @@ social:
   name                   : # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
 
-# Analytics
+
+
+# 
+# 블로그 분석 도구 설정
+# ====================================================================================================
 analytics:
   provider               : # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
@@ -111,58 +149,52 @@ analytics:
     anonymize_ip         : # true, false (default)
 
 
-# Site Author
+# 
+# 프로필 설정
+# ====================================================================================================
 author:
-  name             : "Your Name"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  name             : "개구리"
+  avatar           : "assets/images/minecraft_frog.png"
+  bio              : "우물 안 개구리의 일상과 생각 그리고 성장을 그리는 우물 탈출기"
+  # location         : "대한민국 (South Korea)"
+  # email            :
   links:
-    - label: "Email"
+    - label: "Gmail"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
-    - label: "Website"
+      url: "mailto:gusdnr7223@gmail.com"
+    - label: "네이버 블로그"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+      url: "https://blog.naver.com/trail3r"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/trail3r"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://instagram.com/trail3r__"
 
-# Site Footer
+
+
+# 
+# 푸터 설정
+# ====================================================================================================
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url:
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url:
+    - label: "네이버 블로그"
+      icon: "fas fa-fw fa-link"
+      url: "https://blog.naver.com/trail3r"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      # url:
-    - label: "Bitbucket"
-      icon: "fab fa-fw fa-bitbucket"
-      # url:
+      url: "https://github.com/trail3r"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url:
-  since: "2013"
+      url: "https://instagram.com/trail3r__"
+  since: "2026"
 
 
-# Reading Files
+
+# 
+# 파일 인식 설정
+# ====================================================================================================
 include:
   - .htaccess
   - _pages
@@ -201,7 +233,10 @@ encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 
-# Conversion
+
+# 
+# 파일 변환 설정
+# ====================================================================================================
 markdown: kramdown
 highlighter: rouge
 lsi: false
@@ -209,7 +244,10 @@ excerpt_separator: "\n\n"
 incremental: false
 
 
-# Markdown Processing
+
+# 
+# 마크다운 설정
+# ====================================================================================================
 kramdown:
   input: GFM
   hard_wrap: false
@@ -221,24 +259,36 @@ kramdown:
   enable_coderay: false
 
 
-# Sass/SCSS
+
+# 
+# Sass/SCSS 설정
+# ====================================================================================================
 sass:
   sass_dir: _sass
   style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 
-# Outputting
+
+# 
+# Outputting 설정
+# ====================================================================================================
 permalink: /:categories/:title/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
-# Pagination with jekyll-paginate
+
+# 
+# jekyll-paginate 설정
+# ====================================================================================================
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 
-# Pagination with jekyll-paginate-v2
-# See https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration
-#   for configuration details
+
+
+# 
+# jekyll-paginate-v2 설정
+# [참고] https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration
+# ====================================================================================================
 pagination:
   # Set enabled to true to use paginate v2
   # enabled: true
@@ -258,7 +308,9 @@ pagination:
     after: 2
 
 
-# Plugins (previously gems:)
+# 
+# 플러그인 설정
+# ====================================================================================================
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
@@ -266,7 +318,6 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
 
-# mimic GitHub Pages with --safe
 whitelist:
   - jekyll-paginate
   - jekyll-sitemap
@@ -275,6 +326,10 @@ whitelist:
   - jekyll-include-cache
 
 
+
+# 
+# 아카이브 설정
+# ====================================================================================================
 # Archives
 #  Type
 #  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
@@ -285,6 +340,7 @@ whitelist:
 #  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
 #  - <base_path>/categories/my-awesome-category/index.html ~> path: /categories/
 #  - <base_path>/my-awesome-category/index.html ~> path: /
+# ====================================================================================================
 category_archive:
   type: liquid
   path: /categories/
@@ -292,27 +348,32 @@ tag_archive:
   type: liquid
   path: /tags/
 # https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
 
 
-# HTML Compression
-# - https://jch.penibelst.de/
+
+# 
+# HTML 압축 설정
+# [참고] - https://jch.penibelst.de/
+# ====================================================================================================
 compress_html:
   clippings: all
   ignore:
     envs: development
 
 
-# Defaults
+# 
+# 기본값 설정
+# ====================================================================================================
 defaults:
   # _posts
   - scope:
@@ -321,7 +382,21 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
-      comments: # true
+      read_time: false
+      comments: true
       share: true
-      related: true
+      related: false
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      read_time: false
+      comments: false
+      share: true
+      related: false
+
+date_format: "%Y. %m. %d."
