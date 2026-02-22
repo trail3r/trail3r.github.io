@@ -1,12 +1,12 @@
 # main links
 main:
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+  - title: "개구리의 밀실"
+    url: "/about/"
+  - title: "개구리 성장기"
+    url: "/fictions/"
+  - title: "개구리의 일상"
+    url: "/daily/"
+  - title: "캠퍼스 라이프"
+    url: "/campuslife/"
+  - title: "몰입의 즐거움"
+    url: "/interest/"
