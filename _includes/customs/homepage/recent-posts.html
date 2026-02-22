@@ -1,0 +1,79 @@
+{%- comment -%} ====================================================================================================
+파일(File):
+  - _includes/customs/homepage/recent_posts.html
+
+역할(Role):
+  - 블로그 홈페이지에 최근 업로드된 게시글을 렌더링합니다.
+
+인자(Arguments):
+  - (선택사항) columns(정수형): 한 줄에 렌더링하고 싶은 최근 업로드된 게시글의 개수 (기본값: 3)
+  - (선택사항) rows(정수형): 렌더링하고 싶은 최근 업로드된 게시글의 행(줄) 수 (기본값: 3)
+  - (선택사항) contain_notice(논리형): 최근 업로드된 게시글 목록에 대표 게시글의 포함 여부 (기본값: false)
+
+참고사항(Notes):
+  - 대표 게시글은 프론트매터(Frontmatter)에 "notice: true"를 포함해야 합니다.
+================================================================================================= {%- endcomment -%}
+
+
+{%- assign columns = include.columns | default: 3 -%}
+{%- assign rows = include.rows | default: 3 -%}
+
+{%- assign limit = columns | times: rows -%}
+
+{%- assign contain_notice = include.contain_notice | default: false -%}
+{%- if include.contain_notice -%}
+    {% assign recent_posts = site.posts | slice: 0, limit %}
+{%- else -%}
+    {% assign recent_posts = site.posts | where_exp: "post", "post.notice != true" | slice: 0, limit %}
+{%- endif -%}
+
+
+<article class="recent-posts">
+  <h2 class="archive__title">최근 업로드된 게시글</h2>
+
+  <div class="recent-posts__grid" style="--columns: {{ columns }};">
+    {%- for post in recent_posts -%}
+      {%- assign represent = "" -%}
+
+      {%- comment -%} 게시글의 일부를 보여줄 때 사용자가 원하는 문장을 렌더링할 수 있도록 특정 키워드를 가지면 대표 문장으로 렌더링되는 기능을 추가합니다. {%- endcomment -%}
+      {%- if post.content contains "<!-- represent -->" -%}
+        {%- assign represent_contents = post.content | split: "<!-- represent -->" | last | split: "<!-- /represent -->" | first -%}
+        {%- assign represent = represent_contents | markdownify | strip_html | replace: "\n", " " | strip -%}
+      {%- endif -%}
+
+      <div class="recent-posts__item">
+        <a class="recent-posts__link" href="{{ post.url | relative_url }}">
+          <div class="recent-posts__teaser{% unless post.header.teaser %} is-empty{% endunless %}">
+            {%- if post.header.teaser -%}
+              <img src="{{ post.header.teaser | relative_url }}" alt="{{ post.title | escape_once }}">
+            {%- else -%}
+              {%- comment -%} 티저 이미지를 지정하지 않아도 레이아웃이 유지되도록 빈 공간을 렌더링합니다. {%- endcomment -%}
+              <span class="recent-posts__teaser-placeholder" aria-hidden="true"></span>
+            {%- endif -%}
+          </div>
+
+          <div class="recent-posts__body">
+            <h3 class="recent-posts__title">{{ post.title }}</h3>
+
+            {%- comment -%} excerpt를 명시하지 않는 경우 게시글의 일부를 발췌하기 때문에 이를 대체하는 커스텀 속성 subtitle을 사용합니다. {%- endcomment -%}
+            {%- if post.subtitle -%}
+              <p class="recent-posts__subtitle">{{ post.subtitle | escape_once }}</p>
+            {%- else -%}
+              {%- comment -%} subtitle을 명시하지 않아도 레이아웃이 유지되도록 빈 줄을 렌더링합니다. {%- endcomment -%}
+              <p class="recent-posts__subtitle is-empty" aria-hidden="true">&nbsp;</p>
+            {%- endif -%}
+
+            {%- if represent -%}
+              <p class="recent-posts__represent">{{ represent }}</p>
+            {%- else -%}
+              {%- comment -%} 대표 문장을 지정하지 않아도 레이아웃이 유지되도록 빈 줄을 렌더링합니다. {%- endcomment -%}
+              <p class="recent-posts__represent is-empty" aria-hidden="true">&nbsp;</p>
+            {%- endif -%}
+
+              <p class="recent-posts__date">{{ post.date | date: "%Y. %m. %d" }}</p>
+          </div>
+        </a>
+      </div>
+    {%- endfor -%}
+  </div>
+</article>

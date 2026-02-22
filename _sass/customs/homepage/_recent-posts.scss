@@ -1,0 +1,157 @@
+/* ====================================================================================================
+   홈페이지에 렌더링 되는 최근 업로드된 게시글 스타일링
+   ==================================================================================================== */
+
+
+/* 공지사항과 최근 업로드된 게시글 사이 간격 조절 */
+.recent-posts {
+  .archive__title {
+    margin: 3rem 0 0.5rem 0;
+
+    border-bottom: 1px solid $light-gray;
+
+    font-size: $standard-font-size;
+    
+    color: $black;
+  }
+}
+
+
+.recent-posts__grid {
+  display: grid;
+  
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 0.5rem;
+}
+
+
+.recent-posts__link {
+  display: flex;
+
+  gap: 0.5rem;
+
+  align-items: stretch;
+}
+
+
+.recent-posts__teaser {
+  overflow: hidden;
+
+  display: flex;
+  
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 30%;
+  aspect-ratio: 4 / 5;
+
+  img {
+    display: block;
+    
+    width: 100%;
+    height: 100%;
+    
+    object-fit: contain;
+  }
+}
+
+.recent-posts__teaser-placeholder {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+.recent-posts__body {
+  display: flex;
+
+  min-width: 0;
+
+  padding: 0.1rem;
+
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+.recent-posts a {
+  text-decoration: none;
+
+  color: $gray;
+
+  &:hover {
+    text-decoration: none !important;
+
+    color: $blue;
+  }
+}
+
+
+/* 카드 구성 요소 스타일링 */
+.recent-posts__grid {
+  .recent-posts__title {
+    overflow: hidden;
+
+    margin: 0.25rem 0 0.1rem 0;
+
+    font-size: $small-font-size;
+    font-weight: $bold;
+    line-height: $small-font-size;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+
+  .recent-posts__subtitle {
+    overflow: hidden;
+
+    min-height: 1.4em;
+
+    margin: 0 0 0.25rem 0;
+
+    font-size: $x-small-font-size;
+    line-height: 1.4;
+        
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &.is-empty {
+      visibility: hidden;
+    }
+  }
+
+
+  .recent-posts__represent {
+    overflow: hidden;
+
+    display: -webkit-box;
+
+    margin: 0.1rem 0;
+
+    font-size: $x-small-font-size;
+    
+    text-overflow: ellipsis;
+
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    &.is-empty {
+      visibility: hidden;
+    }
+  }
+
+
+  .recent-posts__date {
+    margin-top: auto;
+
+    font-size: $xx-small-font-size;
+
+    color: $gray;
+  }
+}
