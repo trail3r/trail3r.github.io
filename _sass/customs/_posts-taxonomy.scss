@@ -1,0 +1,188 @@
+/* ====================================================================================================
+   카테고리 및 태그 아카이브 페이지 스타일링
+   ==================================================================================================== */
+
+
+.archive__subtitle {
+  padding: 0;
+  margin: 1.5rem 0 0.5rem;
+
+  font-size: 1rem;
+  
+  color: $black;
+}
+
+
+.taxonomy__index {
+  > li {
+    font-size: $x-small-font-size;
+
+    color: $black;
+
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+
+
+.taxonomy__section {
+  padding-bottom: 0.1rem;
+}
+
+
+.back-to-top {
+  padding-top: 0.1rem;
+
+  color: $graphite !important;
+}
+
+
+.archive_item {
+  padding: 0.25rem 0;
+
+  border-bottom: 1px solid $extra-light-gray;
+
+
+  .archive_item-body {
+    display: flex;
+    align-items: center;
+    
+    min-width: 0;
+    gap: 0.5rem;
+  }
+
+
+  .archive_item-title {
+    overflow: hidden;
+
+    min-width: 0;
+
+    font-size: $small-font-size;
+    font-weight: $semibold;
+    
+    white-space: nowrap;
+    text-decoration: none;
+    text-overflow: ellipsis;
+
+    color: $black;
+  }
+
+
+  .archive_item-date {
+    font-size: $xx-small-font-size;
+
+    white-space: nowrap;
+
+    color: $gray;
+  }
+
+
+  .archive_item-list {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+/* 카테고리와 태그 스타일링 */
+.posts__taxonomy {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.25rem;
+
+  flex-wrap: wrap;
+
+
+  .posts__list[hidden] {
+    display: none;
+  }
+
+
+  .posts__list {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 0.05rem 0.5rem;
+
+    border: 1px solid $gray;
+    border-radius: 99rem;
+
+    font-size: $xx-small-font-size;
+    font-weight: $regular;
+
+    text-decoration: none;
+    line-height: 1.5;
+
+    color: $black;
+
+
+    &.posts__category {
+      border: 1px solid $graphite;
+
+      a {
+        text-decoration: none;
+
+        color: $graphite;
+      }
+
+      &:hover {
+        border-color: $blue;
+
+        font-weight: $semibold;
+
+        a {
+          color: $blue;
+        }
+      }
+    }
+
+
+    &.posts__tag {
+      a {
+        overflow: hidden;
+
+        min-width: 0;
+        max-width: 5rem;  // 태그의 최대 길이를 제한합니다.
+
+        white-space: nowrap;
+        text-decoration: none;
+        text-overflow: ellipsis;
+
+        color: $gray;
+      }
+
+      &:hover {
+        border-color: $black;
+
+        a {
+          font-weight: $semibold;
+
+          color: $black;
+        }
+      }
+    }
+
+    
+    &.posts__tag-hidden {
+      border: 1px dashed $light-gray;
+
+      background-color: transparent;
+
+      color: $gray;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        border: 1px solid $black;
+
+        font-weight: $semibold;
+        
+        color: $black;
+      }
+    }
+  }
+}
