@@ -20,4 +20,6 @@ search: false
 
 @import "customs/links-icon";  // 프로필(Author Profile) 및 푸터(Footer) 내 링크 아이콘 스타일링
 
+@import "customs/posts-archive";  // 게시판 스타일링
+
 @import "customs/paginator-v2";  // jekyll-paginate-v2를 활용한 paginator-v2 페이지네이션 스타일링

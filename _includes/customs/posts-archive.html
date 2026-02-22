@@ -1,0 +1,137 @@
+{%- comment -%} ====================================================================================================
+파일(File):
+  - _includes/customs/posts-archive.html
+
+역할(Role):
+  - 업로드된 게시글을 나열하여 렌더링하는 게시판을 구현합니다.
+
+인자(Argument):
+  - (선택사항) mode(문자열): 게시판 동작 모드 ("category" | "all") (기본값: "category")
+    - "category": 특정 카테고리에 해당하는 게시글만 필터링
+    - "all": 모든 게시글 렌더링
+  - (선택사항) category(배열): 필터링할 카테고리 (기본값: page.categories[0] (명시된 카테고리 중 첫 번째 요소))
+  - (선택사항) layout(문자열): 게시판 렌더링 레이아웃 ("card" | "gallery" | "list") (기본값: "card")
+  - (선택사항) columns(정수형): 갤러리형("gallery") 레이아웃에서 한 줄에 렌더링할 게시글의 개수 (기본값: 5)
+  - (선택사항) contain_notice(논리형): 대표 게시글 포함 여부 (기본값: false)
+  - (선택사항) layout_switch(논리형): 레이아웃 전환 버튼 활성화 여부 (기본값: true)
+  - (선택사항) pagination(논리형): 페이지네이션 활성화 여부 (기본값: true)
+  - (선택사항: 내부 참조 요소) _storage_key(문자열): localStorage 저장 키 (기본값: 경로 기반 자동 생성)
+
+참고사항(Notes):
+  - _layout/custom.html에 import하여 사용됩니다.
+  - 페이지네이션을 포함하기 위하여 _includes/customs/paginator-v2.html을 import하여 사용합니다.
+================================================================================================= {%- endcomment -%}
+
+
+{%- comment -%} 게시판 동작 모드 {%- endcomment -%}
+{%- assign mode = include.mode | default: "category" | downcase | strip -%}
+
+{%- comment -%} 게시판 기본 레이아웃 {%- endcomment -%}
+{%- assign default_layout = include.layout | default: "card" | downcase | strip -%}
+
+{%- comment -%} 갤러리형("gallery") 레이아웃에서 한 줄에 렌더링할 게시글의 개수 {%- endcomment -%}
+{%- assign columns = include.columns | default: 5 -%}
+
+{%- comment -%} 레이아웃 전환 버튼 활성화 여부 {%- endcomment -%}
+{%- assign layout_switch = include.layout_switch | default: true -%}
+
+{%- comment -%} 페이지네이션 활성화 여부 {%- endcomment -%}
+{%- assign active_pagination = include.pagination | default: true -%}
+
+{%- comment -%} localStorage 저장 키 {%- endcomment -%}
+{%- assign _storage_key = include._storage_key | default: "" | strip -%}
+
+{%- comment -%} posts 리소스 설정  {%- endcomment -%}
+{%- if active_pagination and paginator -%}
+  {%- assign posts = paginator.posts -%}
+{%- else -%}
+  {%- assign posts = site.posts -%}
+{%- endif -%}
+
+{%- comment -%} 필터링할 카테고리 설정 {%- endcomment -%}
+{%- assign filter = include.category | first | default: page.categories | first | default: "" -%}
+{%- if mode == "category" and filter != "" -%}
+  {%- assign posts = posts | where_exp: "post", "post.categories contains filter" -%}
+{%- endif -%}
+
+{%- comment -%} 대표 게시글 포함 여부 {%- endcomment -%}
+{%- assign contain_notice = include.contain_notice | default: false -%}
+{%- if contain_notice == false -%}
+  {%- assign posts = posts | where_exp: "post", "post.notice != true" -%}
+{%- endif -%}
+
+{%- if _storage_key == "" -%}
+  {%- if mode == "category" and filter != "" -%}
+    {%- assign _storage_key = "category:" | append: filter -%}
+  {%- else -%}
+    {%- assign _storage_key = "posts-archive:global" -%}
+  {%- endif -%}
+{%- endif -%}
+
+
+{%- if posts and posts.size > 0 -%}
+<section class="posts-archive posts-archive--{{ default_layout }}" data-posts-archive data-default-layout="{{ default_layout }}" data-storage-key="{{ _storage_key | escape }}" style="--columns: {{ columns }};">
+  {%- if layout_switch -%}
+    <div class="posts-archive__button" aria-label="Layout type">
+      {%- assign layouts = "card, gallery, list" | split: "," -%}
+      {%- for type in layouts -%}
+        {%- assign layout = type | strip -%}
+        <button type="button" class="posts-archive__button-body" data-posts-archive-layout="{{ layout }}" aria-pressed="{%- if default_layout == layout -%}true{%- else -%}false{%- endif -%}" title="{{ layout }} layout">
+          {%- include customs/posts-archive-layout-icon/layout-type-{{ layout }}.svg -%}
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+
+  <div class="posts-archive__layout">
+    {%- for post in posts -%}
+      {%- assign represent = "" -%}
+      {%- if post.content contains "<!-- represent -->" -%}
+        {%- assign represent_contents = post.content | split: "<!-- represent -->" | last | split: "<!-- /represent -->" | first -%}
+        {%- assign represent = represent_contents | markdownify | strip_html | replace: "\n", " " | strip -%}
+      {%- endif -%}
+
+      <article class="posts-archive-item">
+        <a class="posts-archive-item__link" href="{{ post.url | relative_url }}">
+          <div class="posts-archive-item__teaser{% unless post.header.teaser %} is-empty{% endunless %}">
+            {%- if post.header.teaser -%}
+              <img src="{{ post.header.teaser | relative_url }}" alt="{{ post.title }}">
+            {%- else -%}
+              <span class="posts-archive-item__teaser-placeholder" aria-hidden="true"></span>
+            {%- endif -%}
+          </div>
+
+          <div class="posts-archive-item__body">
+
+            <h3 class="posts-archive-item__title">{{ post.title }}</h3>
+
+            <div class="posts-archive-item__meta">
+              {%- if post.subtitle -%}
+                <p class="posts-archive-item__subtitle">{{ post.subtitle }}</p>
+              {%- else -%}
+                <p class="posts-archive-item__subtitle is empty" aria-hidden="true">&nbsp;</p>
+              {%- endif -%}
+
+              {%- if represent != "" -%}
+                <p class="posts-archive-item__represent">{{ represent }}</p>
+              {%- else -%}
+               <p class="posts-archive-item__represent is empty" aria-hidden="true">&nbsp;</p>
+              {%- endif -%}
+
+              <time class="posts-archive-item__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y. %m. %d" }}</time>
+
+            </div>
+          </div>
+        </a>
+      </article>
+    {%- endfor -%}
+  </div>
+
+
+  {%- comment -%} 페이지네이션 {%- endcomment -%}
+  {%- if active_pagination and paginator -%}
+    {%- include customs/paginator-v2.html -%}
+  {%- endif -%}
+</section>
+{%- endif -%}
