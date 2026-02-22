@@ -1,0 +1,87 @@
+/* ====================================================================================================
+   Minimal Mistakes 테마 변수 재정의 및 커스텀 변수 추가
+   ==================================================================================================== */
+
+
+/*
+   Minimal Mistakes 테마 변수 재정의
+   ==================================================================================================== */
+
+/* 상단 네비게이션 바 폰트 스타일링 */
+$navigation-font-family: "Galmuri11", "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+
+.masthead, .masthead__menu, .greedy-nav, .greedy-nav a {
+  font-family: $navigation-font-family;
+}
+
+
+/* 블로그 전체 폰트 스타일링 */
+$sans-serif: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$serif: "Nanum Myeongjo", "Noto Serif KR", Georgia, Times, serif;
+$monospace: "D2Coding", "Nanum Gothic Coding", "JetBrains Mono", Monaco, Consolas, "Lucida Console", monospace;
+
+
+/* 블로그 기본 폰트 크기 */
+$doc-font-size: 16px;
+
+
+/* 헤더 폰트 크기 */
+$h-size-1: 1.5rem;
+$h-size-2: 1.25rem;
+$h-size-3: 1rem;
+$h-size-4: 0.8rem;
+$h-size-5: 0.7rem;
+$h-size-6: 0.7rem;
+
+
+/* 블로그 너비 조절 */
+$x-large: 1440px;
+
+
+/* 게시글 너비 조절 */
+$right-sidebar-width-narrow: 150px;  // default: 200px
+$right-sidebar-width: 250px;  // default: 300px
+$right-sidebar-width-wide: 300px;  // default: 400px
+
+
+
+/*
+   커스텀 변수 추가
+   ==================================================================================================== */
+
+/* 폰트 크기 조절 변수 추가 */
+$xxx-large-font-size: 2rem;
+$xx-large-font-size: 1.75rem;
+$x-large-font-size: 1.5rem;
+$large-font-size: 1.25rem;   
+$standard-font-size: 1rem;
+$small-font-size: 0.8rem;
+$x-small-font-size: 0.7rem;
+$xx-small-font-size: 0.6rem;
+$xxx-small-font-size: 0.5rem;
+
+
+/* 폰트 굵기 조절 변수 추가 */
+$thin: 100;
+$extralight: 200;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$extrabold: 800;
+$black: 900;
+
+
+/* 색상 변수 추가 */
+$black: #0A0A0A;  // True Black: RGB(10, 10, 10)
+$white: #F5F5F5;  // Tech White: RGB(245, 245, 245)
+$gray: #808080;  // Gray: RGB(128, 128, 128)
+
+$light-gray: #C0C0C0;  // Argent: RGB(192, 192, 192)
+$extra-light-gray: #E0E0E0;  // Light Silver: RGB(224, 224, 224)
+
+$red: #D0342C;  // Red Beauty: RGB(208, 52, 44)
+$blue: #1338BE;  // Impact Blue: RGB(19, 56, 190)
+$sky-blue: #87CEEB;  // Sky Blue: RGB(135, 206, 235)
+$graphite: #41424C;  // Graphite: RGB(65, 66, 76)
