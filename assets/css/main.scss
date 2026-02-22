@@ -10,3 +10,5 @@ search: false
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+@import "customs/links-icon";  // 프로필(Author Profile) 및 푸터(Footer) 내 링크 아이콘 스타일링
