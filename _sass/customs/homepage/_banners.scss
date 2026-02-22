@@ -1,0 +1,26 @@
+/* ====================================================================================================
+   홈페이지의 배너 메뉴 스타일링
+   ==================================================================================================== */
+
+
+.banners__grid {
+  --columns: var(--columns, 5);
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+
+  display: grid;
+
+  margin-bottom: 3rem;
+  gap: 0.5rem;
+
+  border-bottom: none;
+
+  .banner__item-teaser img {
+    display: block;
+
+    max-width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    box-shadow: none !important;
+  }
+}
