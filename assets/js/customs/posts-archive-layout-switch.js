@@ -32,7 +32,13 @@
         const storage = window.localStorage;
         const storage_key = "posts-archive:layout:" + posts_archive.getAttribute("data-storage-key");
 
-        set_layout(posts_archive, storage.getItem(storage_key));
+        const layout = new Set(["card", "gallery", "list"]);
+
+        const default_layout = posts_archive.getAttribute("data-default-layout") || "card";
+        const save_layout = storage.getItem(storage_key);
+        const initial_layout = layout.has(save_layout) ? save_layout : (layout.has(default_layout) ? default_layout : "card");
+
+        set_layout(posts_archive, initial_layout);
 
         posts_archive.addEventListener("click", (event) => {
             const button = event.target.closest("[data-posts-archive-layout]");
