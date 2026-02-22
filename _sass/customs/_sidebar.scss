@@ -1,0 +1,56 @@
+/* ====================================================================================================
+   사이드바 스타일링
+   ==================================================================================================== */
+
+
+.sidebar {
+  font-family: $sans-serif;
+
+
+  li, p {
+    line-height: 1.2;
+  }
+
+  // 프로필(Author Profile)의 크기도 조절합니다.
+  .author__name {
+    font-size: $standard-font-size;
+  }
+
+  .author__bio {
+    margin: 0.25rem 0 1rem 0;
+
+    font-size: $x-small-font-size;
+
+    p {
+      margin: 0.25rem 0 1rem 0;
+
+      font-size: $x-small-font-size;
+    }
+  }
+
+  .author__urls {
+    font-size: $small-font-size;
+
+    ul, li {
+      margin-bottom: 0.35rem;
+    }
+  }
+
+
+  /* 사이드바 네비게이션 스타일링 */
+  .nav__items {
+    .nav__sub-title {
+      margin: 0.5rem 0 0.25rem 0;
+
+      font-size: $x-small-font-size;
+    }
+
+    a {
+      font-size: $xx-small-font-size;
+
+      &.active {
+        font-weight: $semibold;
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 {% if page.author_profile or layout.author_profile or page.sidebar %}
   <div class="sidebar sticky">
   {% if page.author_profile or layout.author_profile %}{%- include customs/author-profile.html -%}{% endif %}
+  {%- if page.active_sidebar -%}{%- include customs/sidebar.html -%}{%- endif -%}
   {% if page.sidebar %}
     {% for s in page.sidebar %}
       {% if s.image %}

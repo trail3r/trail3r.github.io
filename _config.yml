@@ -384,6 +384,9 @@ defaults:
     values:
       layout: single
       author_profile: true
+      active_sidebar: true
+      sidebar:
+        nav: "sidebar"
       read_time: false
       comments: true
       share: true
@@ -396,6 +399,7 @@ defaults:
     values:
       layout: single
       author_profile: true
+      active_sidebar: true
       read_time: false
       comments: false
       share: true
