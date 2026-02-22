@@ -3,7 +3,10 @@
    ==================================================================================================== */
 
 
-/* 상단 네비게이션 바 기본 스타일 정의 */
+/*
+   상단 네비게이션 바 기본 스타일링
+   ==================================================================================================== */
+
 .masthead {
   // 카테고리 아카이브 페이지의 접근성을 향상시키기 위해 sticky 속성을 적용하였습니다.
   position: sticky;
@@ -19,7 +22,7 @@
 }
 
 
-/* 상단 네비게이션 바 내부 네비게이션 메뉴 스타일 정의 */
+/* 상단 네비게이션 바 내부 네비게이션 메뉴 스타일링 */
 .greedy-nav {
   .site-title {
     padding: 0.5rem 0;
@@ -44,5 +47,74 @@
 
   .visible-links a:before {
     height: 2px;  // default: 4px 
+  }
+}
+
+
+
+/*
+   상단 네비게이션 바 드롭다운 메뉴 스타일링
+   ==================================================================================================== */
+
+/* 드론다운 메뉴가 가려지는 것을 방지 */
+.greedy-nav {
+  overflow: visible;
+
+  .visible-links {
+    overflow: visible;
+  }
+}
+
+
+.dropdown {
+  position: relative;  // 드롭다운 메뉴가 상위 메뉴 하단에서 나타날 수 있도록 relative로 설정하였습니다.
+
+  .dropdown__menu {
+    display: none;
+    position: absolute;  // 드롭다운 메뉴별 등장 위치는 일정하도록 absolute로 설정하였습니다.
+    top: calc(100% + 0.25rem);
+
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0;
+
+    border: 1px solid $light-gray;
+    border-radius: 0.25rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+    background: $white;
+  }
+
+  &:hover {
+    .dropdown__menu {
+      display: block;
+    }
+  }
+
+  // 상위 메뉴와 드롭다운 메뉴 사이에 투명 브릿지를 만들어 메뉴가 끊기는 것을 방지합니다.
+  .dropdown__menu::before {
+    position: absolute;
+    top: -0.5rem;
+    left: 0;
+    right: 0;
+
+    height: 0.5rem;
+
+    content: "";
+  }
+
+
+  .dropdown-item {
+    display: block;
+
+    padding: 0.25rem;
+    
+    white-space: nowrap;
+
+    .dropdown__item-title {
+      padding: 0.25rem 0;
+
+      font-size: $x-small-font-size;
+    }
   }
 }

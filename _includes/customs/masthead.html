@@ -1,0 +1,76 @@
+{%- comment -%} ====================================================================================================
+파일(File):
+  - _includes/customs/masthead.html
+
+역할(Role):
+  - 상단 네비게이션 바에 드롭다운 메뉴 기능을 추가하여 레이아웃을 단순화합니다.
+
+의존성(Dependencies):
+  - site.data.navigation: _data/navigation.yml
+
+참고사항(Notes):
+  - 드롭다운 메뉴는 _sass/customs/_masthead.scss와 함께 구현됩니다.
+================================================================================================= {%- endcomment -%}
+
+
+{%- capture logo_path -%}{{ site.logo }}{%- endcapture -%}
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav class="greedy-nav" id="site-nav">
+        {%- unless logo_path == empty -%}
+          <a class="site-logo" href="{{ '/' | relative_url }}">
+            <img src="{{ logo_path | relative_url }}" alt="{{ site.masthead_title | default: site.title }}">
+          </a>
+        {%- endunless -%}
+
+        <a class="site-title" href="{{ '/' | relative_url }}">
+          {{ site.masthead_title | default: site.title | escape_once | strip }}
+
+          {%- if site.subtitle -%}
+            <span class="site-subtitle">{{ site.subtitle | escape_once | strip }}</span>
+          {%- endif -%}
+        </a>
+
+        <ul class="visible-links">
+          {%- for link in site.data.navigation.main -%}
+            {%- if link.children and link.children.size > 0 -%}
+              <li class="dropdown">
+                <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ link.title }}
+                  <i class="fa fa-caret-down fa-sm" aria-hidden="true"></i><span class="caret"></span>
+                </a>
+
+                <ul class="dropdown__menu">
+                  {%- for children in link.children -%}
+                    <li class="dropdown__item">
+                      <a class="dropdown__item-title" href="{{ children.url | relative_url }}">{{ children.title | escape_once }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {%- else -%}
+              <li class="masthead__menu-item">
+                <a href="{{ link.url | relative_url }}">{{ link.title | escape_once}}</a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+
+        {%- if site.search == true -%}
+          <button class="search__toggle" type="button">
+            <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: "Toggle search" }}</span>
+            <i class="fas fa-search"></i>
+          </button>
+        {%- endif -%}
+
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_toggle_label | default: "Toggle menu" }}</span>
+          <div class="navicon"></div>
+        </button>
+
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
