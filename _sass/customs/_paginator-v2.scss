@@ -1,0 +1,92 @@
+/* ====================================================================================================
+   jekyll-paginate-v2를 활용한 paginator-v2 페이지네이션 스타일링
+   ==================================================================================================== */
+
+
+.paginator-v2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  margin: 1rem 0;
+  gap: 0.5rem;
+}
+
+
+.paginator-v2__list {
+  display: flex;
+  align-items: center;
+  
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  
+  list-style: none;
+}
+
+
+.pagination__link {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-width: 30px;
+  height: 28px;
+
+  padding: 0 0.5rem;
+
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+
+  font-size: $xx-small-font-size;
+  font-weight: $regular;
+  line-height: 1;
+
+  text-align: center;
+  text-decoration: none;
+
+  color: $graphite;
+}
+
+
+/* 선택된 버튼에 강조 효과 적용 */
+.paginator-v2__item.is-selected > .pagination__link {
+  border-color: $blue;
+
+  font-weight: $bold;
+
+  color: $blue;
+}
+
+
+/* 선택 불가를 식별할 수 있도록 스타일링 */
+.paginator-v2__item.is-disabled > .pagination__link {
+  cursor: default;
+
+  opacity: 0.5;
+
+  pointer-events: none;
+}
+
+
+/* 홑화살괄호를 버튼처럼 보이도록 스타일링 */
+.paginator-v2__item--first .pagination__link,
+.paginator-v2__item--previous .pagination__link,
+.paginator-v2__item--next .pagination__link,
+.paginator-v2__item--last .pagination__link {
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+
+  font-size: $standard-font-size;
+  font-weight: $thin;
+}
+
+
+/* 버튼에 생기는 밑줄 효과 제거 */
+.paginator-v2 .pagination__link:hover {
+  text-decoration: none !important;
+}

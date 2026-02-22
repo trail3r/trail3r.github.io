@@ -1,0 +1,87 @@
+{%- comment -%} ====================================================================================================
+파일(File):
+  - _includes/customs/paginator-v2.html
+
+역할(Role):
+  - jekyll-paginate-v2 플러그인을 이용하여 페이지네이션 기능을 구현합니다.
+
+의존성(Dependencies):
+  - jekyll-paginate-v2
+
+참고사항(Notes):
+  - 페이지네이션을 활성화하고 싶은 페이지에 import하여 사용합니다.
+================================================================================================= {%- endcomment -%}
+
+
+{%- if paginator -%}
+<nav class="paginator-v2" aria-label="Pagination">
+  <ul class="paginator-v2__list">
+    {%- comment -%} 첫 페이지로 이동하는 버튼을 렌더링합니다. {%- endcomment -%}
+    {%- if paginator.page > 1 -%}
+      <li class="paginator-v2__item paginator-v2__item--first">
+        <a class="pagination__link" href="{{ paginator.first_page_path | remove: 'index.html' | relative_url }}" aria-label="First page">&laquo;</a>
+      </li>
+    {%- else -%}
+      {%- comment -%} 현재 페이지가 첫 번째 페이지라면, 클릭이 불가능한 버튼을 렌더링합니다. {%- endcomment -%}
+      <li class="paginator-v2__item paginator-v2__item--first is-disabled">
+        <span class="pagination__link" aria-disabled="true" aria-label="First page">&laquo;</span>
+      </li>
+    {%- endif -%}
+
+    {%- comment -%} 이전 페이지로 이동하는 버튼을 렌더링합니다. {%- endcomment -%}
+    {%- if paginator.previous_page -%}
+      <li class="paginator-v2__item paginator-v2__item--previous">
+        <a class="pagination__link" href="{{ paginator.previous_page_path | remove: 'index.html' | relative_url }}" aria-label="Previous page" rel="previous">&lsaquo;</a>
+      </li>
+    {%- else -%}
+      {%- comment -%} 이전 페이지가 존재하지 않는 경우, 클릭이 불가능한 버튼을 렌더링합니다. {%- endcomment -%}
+      <li class="paginator-v2__item paginator-v2__item--previous is-disabled">
+        <span class="pagination__link" aria-disabled="true" aria-label="Previous page">&lsaquo;</span>
+      </li>
+    {%- endif -%}
+
+
+    {%- comment -%} 사용자에게 보여질 페이지를 렌더링합니다. {%- endcomment -%}
+    {%- if paginator.page_trail and paginator.page_trail.size > 0 -%}
+      {%- for trail in paginator.page_trail -%}
+        {%- if paginator.page == trail.num -%}
+          <li class="paginator-v2__item is-selected">
+            <span class="pagination__link" aria-current="page">{{ trail.num }}</span>
+          </li>
+        {%- else -%}
+          <li class="paginator-v2__item">
+            <a class="pagination__link" href="{{ trail.path | remove: 'index.html' | relative_url }}" aria-label="Go to page {{ trail.num }}">{{ trail.num }}</a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      <li class="paginator-v2__item is-selected">
+        <span class="pagination__link" aria-current="page">1</span>
+      </li>
+    {%- endif -%}
+
+        
+    {%- comment -%} 다음 페이지로 이동하는 버튼을 렌더링합니다. {%- endcomment -%}
+    {%- if paginator.next_page -%}
+      <li class="paginator-v2__item paginator-v2__item--next">
+        <a class="pagination__link" href="{{ paginator.next_page_path | remove: 'index.html' | relative_url }}" aria-label="Next page" rel="next">&rsaquo;</a>
+      </li>
+    {%- else -%}
+      <li class="paginator-v2__item paginator-v2__item--next is-disabled">
+        <span class="pagination__link" aria-disabled="true" aria-label="Next page">&rsaquo;</span>
+      </li>
+    {%- endif -%}
+
+    {%- comment -%} 마지막 페이지로 이동하는 버튼을 렌더링합니다. {%- endcomment -%}
+    {%- if paginator.page < paginator.total_pages -%}
+      <li class="paginator-v2__item paginator-v2__item--last">
+        <a class="pagination__link" href="{{ paginator.last_page_path | remove: 'index.html' | relative_url }}" aria-label="Last page">&raquo;</a>
+      </li>
+    {%- else -%}
+      <li class="paginator-v2__item paginator-v2__item--last is-disabled" >
+        <span class="pagination__link" aria-disabled="true" aria-label="Last page">&raquo;</span>
+      </li>
+    {%- endif -%}
+  </ul>
+</nav>
+{%- endif -%}
