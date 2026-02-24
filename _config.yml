@@ -259,7 +259,7 @@ kramdown:
   enable_coderay: false
   syntax_highlighter: tree-sitter
   syntax_highlighter_opts:
-    tree_sitter_parsers_dir: "assets/tree_sitter/tree_sitter_parsers"
+    tree_sitter_parsers_dir: "assets/tree_sitter_parsers"
     css_classes: true
 
 

@@ -7,7 +7,7 @@ gem "jekyll-paginate-v2"
 
 gem "kramdown-syntax_tree_sitter",
     git: "https://github.com/trail3r/kramdown-syntax_tree_sitter.git",
-    branch: "hotfix/tree-sitter-0.25"
+    tag: "v0.6.0-ts025"
 
 group :jekyll_plugins do
 end
