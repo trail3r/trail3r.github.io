@@ -6,8 +6,8 @@ gem "webrick"
 gem "jekyll-paginate-v2"
 
 gem "kramdown-syntax_tree_sitter",
-    git: "https://github.com/andrewtbiehl/kramdown-syntax_tree_sitter.git",
-    ref: "477a501"
+    git: "https://github.com/trail3r/kramdown-syntax_tree_sitter.git",
+    branch: "hotfix/tree-sitter-0.25"
 
 group :jekyll_plugins do
 end
