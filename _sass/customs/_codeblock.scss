@@ -1,0 +1,128 @@
+/* ====================================================================================================
+   Tree Sitter 구문 강조기 (Syntax Highlighter) 코드블럭 스타일링
+   ==================================================================================================== */
+
+
+/*
+   코드블럭 스타일링
+   ==================================================================================================== */
+
+/* 코드블럭을 Visual Studio Code와 유사하게 스타일링 */
+.highlighter-tree-sitter {
+    position: relative;
+    margin-bottom: 1rem;
+
+    background: $--vscode-editor-background;
+    color: $--vscode-editor-foreground;
+
+    font-family: $monospace;
+    font-size: $x-small-font-size;
+    line-height: 1.5;
+
+    border-radius: 0.25rem;
+
+    [dir=rtl] & {
+        direction: ltr;
+        text-align: start;
+    }
+
+    > pre {
+        margin: 0rem;
+        padding: 0.5rem;
+        overflow: auto;
+    }
+
+    pre code {
+        display: block;
+        white-space: pre;
+    }
+}
+
+
+
+/*
+   구문 강조 색상
+   ==================================================================================================== */
+
+.highlighter-tree-sitter {
+    .ts-attribute {
+        color: $--vscode-editor-attributes;
+    }
+
+    .ts-comment {
+        color: $--vscode-editor-comment;
+    }
+
+    .ts-constant,
+    .ts-constant-builtin {
+        color: $--vscode-editor-constant;
+    }
+
+    .ts-function,
+    .ts-function-builtin {
+        color: $--vscode-editor-function;
+    }
+
+    .ts-keyword {
+        color: $--vscode-editor-keyword;
+    }
+
+    .ts-operator {
+        color: $--vscode-editor-operator;
+    }
+
+    .ts-property {
+        color: $--vscode-editor-property;
+    }
+
+    .ts-string {
+        color: $--vscode-editor-string;
+    }
+
+    .ts-string-special-symbol {
+        color: $--vscode-editor-function;
+    }
+
+    .ts-tag {
+        color: $--vscode-editor-tag;
+    }
+
+    .ts-type, 
+    .ts-type-builtin {
+        color: $--vscode-editor-type;
+    }
+
+    .ts-variable,
+    .ts-variable-parameter {
+        color: $--vscode-editor-variable;
+    }
+
+    .ts-variable-builtin {
+        color: $--vscode-editor-variable-builtin;
+    }
+
+    .ts-constructor,
+    .ts-module {
+        color: $--vscode-editor-module;
+    }
+
+    .ts-punctuation-bracket {
+        color: $--vscode-editor-punctuation-bracket;
+    }
+
+    .ts-punctuation-delimeter {
+        color: $--vscode-editor-punctuation-delimeter;
+    }
+
+    .ts-punctuation-special {
+        color: $--vscode-editor-punctuation-special;
+    }
+
+    .ts-error {
+        color: $--vscode-editor-error;
+    }
+
+    .ts-number {
+        color: $--vscode-editor-number;
+    }
+}
