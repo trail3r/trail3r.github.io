@@ -257,6 +257,10 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+  syntax_highlighter: tree-sitter
+  syntax_highlighter_opts:
+    tree_sitter_parsers_dir: "assets/tree_sitter/tree_sitter_parsers"
+    css_classes: true
 
 
 
@@ -313,6 +317,7 @@ pagination:
 # ====================================================================================================
 plugins:
   # - jekyll-paginate
+  - kramdown/syntax_tree_sitter
   - jekyll-paginate-v2
   - jekyll-sitemap
   - jekyll-gist
@@ -321,6 +326,7 @@ plugins:
 
 whitelist:
   # - jekyll-paginate
+  - kramdown/syntax_tree_sitter
   - jekyll-paginate-v2
   - jekyll-sitemap
   - jekyll-gist
