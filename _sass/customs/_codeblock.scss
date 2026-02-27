@@ -143,10 +143,10 @@
     align-items: center;
     justify-content: space-between;
 
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem;
 
     border-radius: 0.25rem;
-    border-bottom: 1px solid $gray;
+    // border-bottom: 1px solid $gray;
 
     background: $--vscode-editor-background;
 
@@ -162,5 +162,42 @@
 
   .codeblock-masthead__filename {
     margin: 0 0 0 0.5rem;
+  }
+}
+
+
+
+/*
+   코드 줄 번호 스타일링
+   ==================================================================================================== */
+
+/* 코드 행 번호를 표시하는 공간의 스타일을 정의합니다. */
+.highlighter-tree-sitter > .codeblock__body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  // 코드 행 번호를 표시하는 공간의 기본 스타일을 정의합니다.
+  .gutter {
+    background: $--vscode-editor-background;
+    color: $--vscode-editor-line-numbers;
+
+    padding: 0rem 0.5rem 0.75rem 0.75rem;
+
+    border-radius: 0.5rem;
+    // border-right: 1px solid $--vscode-editor-line-numbers;
+
+    text-align: right;
+    
+    // 코드와 행별 높이를 일치시킵니다.
+    > span {
+      display: block;
+      line-height: inherit;
+      }
+  }
+
+  // 코드와 공간을 일치시킵니다.
+  > pre {
+    margin: 0rem;
+    padding: 0rem 0.75rem 0.75rem 0.5rem;
   }
 }
