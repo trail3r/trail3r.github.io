@@ -121,6 +121,9 @@
         };
 
         button.addEventListener("click", copy);
+        
+        /* 플로팅 복사 버튼의 복사 요청 응답 */
+        button.addEventListener("copybutton:request", copy);
     }
 
 
