@@ -134,6 +134,58 @@
 
 
 /*
+   무지개 괄호 강조 효과 색상
+   ==================================================================================================== */
+
+.highlighter-tree-sitter {
+  .bracket {
+    font-weight: inherit;
+  }
+
+  .bracket-depth-1 {
+    color: $--bracket-depth-1;
+  }
+
+  .bracket-depth-2 {
+    color: $--bracket-depth-2;
+  }
+    
+  .bracket-depth-3 {
+    color: $--bracket-depth-3;
+  }
+
+  .bracket-depth-4 {
+    color: $--bracket-depth-4;
+  }
+
+  .bracket-depth-5 {
+    color: $--bracket-depth-5;
+  }
+
+  .bracket-depth-6 {
+    color: $--bracket-depth-6;
+  }
+
+  .bracket-depth-7 {
+    color: $--bracket-depth-7;
+  }
+
+  .bracket-depth-8 {
+    color: $--bracket-depth-8;
+  }
+
+  .bracket-mismatch {
+    text-decoration: underline wavy $--vscode-editor-error;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 3px;
+
+    color: $--vscode-editor-error;
+  }
+}
+
+
+
+/*
    메타데이터 상단바 스타일링
    ==================================================================================================== */
 
