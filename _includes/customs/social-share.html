@@ -1,0 +1,18 @@
+{%- comment -%} ====================================================================================================
+파일(File):
+    - _includes/customs/social-share.html
+
+목적(Purpose):
+    - 게시글 하단에 나타나는 공유하기 버튼에 URL 복사 버튼을 추가합니다.
+
+참고사항(Notes):
+    - Minimal Mistakes 테마의 기본 social-share.html을 대체하는 파일입니다.
+================================================================================================= {%- endcomment -%}
+
+
+<section class="page__share">
+    <h4 class="page__share-title">{{ site.data.ui-text[site.locale].share_on_label | default: "Share on" }}</h4>
+    <a class="btn btn--copyUrl" onclick="navigator.clipboard.writeText(window.location.href.toString())">
+        <span>URL 복사</span>
+    </a>
+</section>

@@ -1,0 +1,24 @@
+/* ====================================================================================================
+   URL 복사 버튼 스타일링
+   ==================================================================================================== */
+
+
+.page__share {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+
+  border-top: 1px solid $light-gray;
+  border-bottom: 1px solid $light-gray;
+
+  .btn--copyUrl {
+    background-color: $blue;
+
+    color: $white;
+  }
+
+  .btn--copyUrl:hover {
+    background-color: $sky-blue;
+
+    color: $white;
+  }
+}
