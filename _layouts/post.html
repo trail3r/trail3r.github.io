@@ -1,0 +1,148 @@
+---
+layout: default
+---
+
+{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
+  {% include page__hero.html %}
+{% elsif page.header.video.id and page.header.video.provider %}
+  {% include page__hero_video.html %}
+{% endif %}
+
+{% assign breadcrumbs_enabled = site.breadcrumbs %}
+{% if page.breadcrumbs != null %}
+  {% assign breadcrumbs_enabled = page.breadcrumbs %}
+{% endif %}
+{% if page.url != "/" and breadcrumbs_enabled %}
+  {% unless paginator %}
+    {% include breadcrumbs.html %}
+  {% endunless %}
+{% endif %}
+
+{%- assign author = page.author | default: site.author -%}
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>
+    {% if page.title %}<meta itemprop="headline" content="{{ page.title | replace: '|', '&#124;' | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
+    {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
+
+    <div class="page__inner-wrap">
+      {% unless page.header.overlay_color or page.header.overlay_image %}
+        <header>
+          {%- if page.categories -%}
+            {%- assign category = page.categories | first -%}
+            {%- assign category_path = site.category_archive.path | default: "/categories/" | relative_url | append: "#" | append: (category | slugify) -%}
+
+            {%- for navigation in site.data.navigation.main -%}
+              {%- if navigation.title == category -%}
+                {%- assign category_path = navigation.url | relative_url -%}
+              {%- endif -%}
+
+              {%- if navigation.children -%}
+                {%- for child in navigation.children -%}
+                  {%- if child.title == category -%}
+                    {%- assign category_path = child.url | relative_url -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            <a class="post__categories-link" href="{{ category_path }}">
+              <div class="post__categories">{{ category }}</div>
+            </a>
+          {%- endif -%}
+
+          {%- if page.title -%}
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="{{ page.url | absolute_url }}" itemprop="url">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
+          </h1>
+          {%- endif -%}
+          
+          <div class="post__meta">
+            <div class="post__author">
+              <a class="post__author-link" href="{{ '/' | relative_url }}">
+                {%- if author.avatar -%}
+                    <img class="post__author-avatar" src="{{ author.avatar | relative_url }}" alt="{{ page.author.name }}">
+                {%- endif -%}
+                <span class="post__author-name">{{ author.name }}</span>
+              </a>
+              <time class="post__date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y. %m. %d. %H:%M" }}</time>
+            </div>
+
+            <div class="post__meta-item">
+              {%- include page__meta.html -%}
+            </div>
+
+            {%- if page.share -%}
+              <section class="post__share">
+                <a class="post__share-btn" onclick="navigator.clipboard.writeText(window.location.href.toString())">URL 복사</a>
+              </section>
+            {%- endif -%}
+          </div>
+        </header>
+      {% endunless %}
+
+      <section class="page__content" itemprop="text">
+        {% if page.toc %}
+          <aside class="sidebar__right {% if page.toc_sticky %}sticky{% endif %}">
+            <nav class="table-of-contents" id="table-of-contents">
+              <header><a class="nav__title" href="#">{{ page.title }}</a></header>
+              {% include toc.html sanitize=true html=content h_min=1 h_max=6 class="toc__menu" skip_no_ids=true %}
+            </nav>
+          </aside>
+        {% endif %}
+        <div id="table-of-content">{{ content }}</div>
+        {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
+      </section>
+
+      <footer class="page__meta">
+        {% if site.data.ui-text[site.locale].meta_label %}
+          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
+        {% endif %}
+        
+        {% if page.tags and page.tags.size > 0 %}
+          <div class="post-taxonomy__body">
+            <strong class="post-taxonomy__label">태그 |</strong>
+
+            <div class="post-taxonomy__tokens">
+              {% for tag in page.tags %}
+                <a
+                  class="post-taxonomy__token post-taxonomy__token--tag"
+                  href="{{ tag | slugify | prepend: tag_path_type | prepend: site.tag_archive.path | relative_url }}"
+                  rel="tag"
+                >
+                  #{{ tag }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+      </footer>
+
+      {%- include customs/post_pagination.html -%}
+    </div>
+
+    {% if site.comments.provider and page.comments %}
+      {% if jekyll.environment == 'production' %}
+        {% include comments.html %}
+      {% else %}
+        <p>
+          Comments are configured with provider: <strong>{{ site.comments.provider }}</strong>,
+          but are disabled in non-production environments.
+        </p>
+      {% endif %}
+    {% endif %}
+  </article>
+
+  {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
+  {% if page.id and page.related and site.related_posts.size > 0 %}
+    {% include page__related.html posts=site.related_posts %}
+  {% comment %}<!-- otherwise show recent posts if no related when `related: true` -->{% endcomment %}
+  {% elsif page.id and page.related %}
+    {% include page__related.html posts=site.posts %}
+  {% endif %}
+</div>

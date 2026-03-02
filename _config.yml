@@ -389,8 +389,8 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
-      active_sidebar: true
+      author_profile: false
+      active_sidebar: false
       sidebar:
         nav: "sidebar"
       read_time: false
@@ -406,8 +406,8 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
-      active_sidebar: true
+      author_profile: false
+      active_sidebar: false
       read_time: false
       comments: false
       share: true

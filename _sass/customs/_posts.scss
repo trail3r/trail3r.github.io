@@ -2,12 +2,104 @@
    게시글 스타일링
    ==================================================================================================== */
 
+
+.post__categories-link {
+  text-decoration: none;
+
+  color: $gray;
+
+  &:hover {
+    color: $blue;
+  }
+
+  .post__categories {
+    margin: 0 0 1rem 0;
+
+    font-size: $small-font-size;
+  }
+}
+
+
+.post__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 0 1rem 0;
+  margin: 0 0 1rem 0;
+
+  border-bottom: 1px solid $light-gray;
+
+  font-size: $small-font-size;
+
+  .post__author {
+    display: flex;
+    align-items: center;
+
+    color: $gray;
+
+    .post__author-link {
+      text-decoration: none;
+
+      &:hover {
+        color: $blue;
+      }
+    }
+
+    img {
+      padding: 0.1rem;
+
+      width: 32px;
+      height: 32px;
+
+      border: 1px solid $light-gray;
+      border-radius: 50%;
+
+      object-fit: cover;
+    }
+
+    .post__author-name {
+      margin: 0 0 0 0.5rem;
+
+      font-weight: $regular;
+    }
+  }
+
+
+  .post__date {
+    margin: 0 0 0 1rem;
+
+    font-size: $x-small-font-size;
+    font-weight: $light;
+
+    color: $gray;
+  }
+
+
+  /* URL 복사 */
+  .post__share {
+    a {
+      font-size: $small-font-size;
+
+      color: $gray;
+
+      &:hover {
+        color: $blue;
+
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+
 .page__inner-wrap {
   .page__title {
     margin: 0 0 1.5rem 0;
 
     font-size: $h-size-1;
-    font-weight: $bold;
+    font-weight: $medium;
   }
 
   .page__content {
@@ -24,7 +116,7 @@
       margin: 1.5rem 0;
 
       font-size: $h-size-1;
-      font-weight: $semibold;
+      font-weight: $medium;
     }
 
     h2 {
@@ -34,35 +126,35 @@
       border: none;
 
       font-size: $h-size-2;
-      font-weight: $semibold;
+      font-weight: $medium;
     }
 
     h3 {
       margin: 0 0 0.1rem 0;
 
       font-size: $h-size-3;
-      font-weight: $semibold;
+      font-weight: $medium;
     }
 
     h4 {
       margin: 0 0 0.1rem 0;
 
       font-size: $h-size-4;
-      font-weight: $semibold;
+      font-weight: $medium;
     }
 
     h5 {
       margin: 0 0 0.1rem 0;
 
       font-size: $h-size-5;
-      font-weight: $semibold;
+      font-weight: $medium;
     }
 
     h6 {
       margin: 0 0 0.1rem 0;
 
       font-size: $h-size-6;
-      font-weight: $semibold;
+      font-weight: $medium;
     }
 
     hr {
@@ -78,7 +170,8 @@
 
 
         &:hover {
-          font-weight: $semibold;
+          text-decoration: underline;
+          text-underline-offset: 2px;
         }
       }
     }
@@ -93,4 +186,56 @@ blockquote {
   font-style: normal;
 
   background-color: $extra-light-gray;
+}
+
+
+.post-taxonomy__body {
+  display: flex;
+  align-items: baseline;
+
+  margin: 0 0 3rem 0;
+  gap: 0.25rem;
+}
+
+
+.post-taxonomy__label {
+  white-space: nowrap;
+}
+
+
+.post-taxonomy__tokens {
+  display: flex;
+  align-items: center;
+    
+  gap: 0.25rem;
+
+  flex-wrap: wrap;
+}
+
+
+.post-taxonomy__token {
+  padding: 0.1rem 0.5rem;
+
+  border: 1px solid $light-gray;
+  border-radius: 999px;
+  
+  font-size: $x-small-font-size;
+  
+  text-decoration: none;
+  line-height: 1.2;
+
+  color: $gray;
+}
+
+
+.post-taxonomy__token--tag {
+  font-weight: $regular;
+
+  &:hover {
+    border-color: $black;
+
+    font-weight: $bold;
+        
+    color: $black;
+  }
 }
