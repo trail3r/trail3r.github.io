@@ -1,0 +1,96 @@
+/* ====================================================================================================
+   게시글 스타일링
+   ==================================================================================================== */
+
+.page__inner-wrap {
+  .page__title {
+    margin: 0 0 1.5rem 0;
+
+    font-size: $h-size-1;
+    font-weight: $bold;
+  }
+
+  .page__content {
+    p {
+      margin: 0 0 1rem 0;
+      font-size: $doc-font-size;
+    } 
+    
+    li, dl {
+      font-size: $doc-font-size;
+    }
+
+    h1 {
+      margin: 1.5rem 0;
+
+      font-size: $h-size-1;
+      font-weight: $semibold;
+    }
+
+    h2 {
+      padding: 0;
+      margin: 0 0 1rem 0;
+
+      border: none;
+
+      font-size: $h-size-2;
+      font-weight: $semibold;
+    }
+
+    h3 {
+      margin: 0 0 0.1rem 0;
+
+      font-size: $h-size-3;
+      font-weight: $semibold;
+    }
+
+    h4 {
+      margin: 0 0 0.1rem 0;
+
+      font-size: $h-size-4;
+      font-weight: $semibold;
+    }
+
+    h5 {
+      margin: 0 0 0.1rem 0;
+
+      font-size: $h-size-5;
+      font-weight: $semibold;
+    }
+
+    h6 {
+      margin: 0 0 0.1rem 0;
+
+      font-size: $h-size-6;
+      font-weight: $semibold;
+    }
+
+    hr {
+      margin: 1.5rem 0;
+    }
+
+
+    #table-of-content {
+      a {
+        text-decoration: none;
+
+        color: $blue;
+
+
+        &:hover {
+          font-weight: $semibold;
+        }
+      }
+    }
+  }
+}
+
+
+blockquote {
+  padding-inline: 0.5rem;
+  margin: 1rem 1rem;
+
+  font-style: normal;
+
+  background-color: $extra-light-gray;
+}
