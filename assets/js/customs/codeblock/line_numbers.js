@@ -30,7 +30,7 @@
 
 
         /* 코드 줄 수 계산 */
-        const text = codeblock.textContent || "";
+        const text = pre.textContent || "";
         let lines = text.split("\n").length;
 
         if (text.endsWith("\n")) {
