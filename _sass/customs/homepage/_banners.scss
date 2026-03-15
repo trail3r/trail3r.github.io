@@ -3,7 +3,7 @@
    ==================================================================================================== */
 
 
-.banners__grid {
+.banners {
   --columns: var(--columns, 5);
   grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
 
@@ -14,7 +14,7 @@
 
   border-bottom: none;
 
-  .banner__item-teaser img {
+  .banner__teaser img {
     display: block;
 
     max-width: 100%;
