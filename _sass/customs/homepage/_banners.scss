@@ -1,26 +1,26 @@
-/* ====================================================================================================
-   홈페이지의 배너 메뉴 스타일링
-   ==================================================================================================== */
+/*
+파일(File):
+    - _sass/customs/homepage/_banners.scss
 
+목적(Purpose):
+    - 블로그의 홈페이지에 렌더링되는 배너 메뉴의 스타일을 정의한다.
+
+의존성(Dependencies):
+    - _includes/customs/homepage/banners.html
+*/
 
 .banners {
-  --columns: var(--columns, 5);
-  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    display: grid;
+    margin: 0 0 3rem 0;
+    gap: 0.5rem;
+    border: none;
+    grid-template-columns: repeat(var(--columns, 5), minmax(0, 1fr));
+}
 
-  display: grid;
-
-  margin-bottom: 3rem;
-  gap: 0.5rem;
-
-  border-bottom: none;
-
-  .banner__teaser img {
+.banner__image {
     display: block;
-
     max-width: 100%;
     height: 100%;
-
+    box-shadow: none !important;  // Minimal Mistakes 테마의 이미지 그림자 효과 제거
     object-fit: contain;
-    box-shadow: none !important;
-  }
 }

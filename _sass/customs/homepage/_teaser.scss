@@ -1,19 +1,23 @@
-/* ====================================================================================================
-   홈페이지의 티저 이미지 스타일링
-   ==================================================================================================== */
+/*
+파일(File):
+    - _sass/customs/homepage/_teaser.scss
 
+목적(Purpose):
+    - 블로그의 홈페이지에 렌더링되는 티저 이미지의 스타일을 정의한다.
+
+의존성(Dependencies):
+    - _includes/customs/homepage/teaser.html
+*/
 
 .page__content {
-  .teaser__image {
-    display: block;
+    .teaser__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0 0 0.5rem 0 !important;  // Minimal Mistakes 테마의 이미지 크기 조절 효과 제거
 
-    width: 100%;
-    height: auto;
-
-    margin: 0 0 0.5rem 0 !important;
-
-    &:hover {
-      box-shadow: none !important;
+        &:hover {
+            box-shadow: none !important;  // Minimal Mistakes 테마의 이미지 그림자 효과 제거
+        }
     }
-  }
 }
