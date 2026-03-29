@@ -1,5 +1,6 @@
-/* ====================================================================================================
-파일(File): assets/js/customs/codeblock/copy_to_clipboard.js
+/*
+파일(File):
+    - assets/js/customs/codeblock/copy_to_clipboard.js
 
 목적(Purpose):
     - 코드블럭에 코드를 복사할 수 있는 버튼을 추가합니다.
@@ -9,10 +10,7 @@
     - assets/js/customs/codeblock/metadata.js
 
 참고사항(Notes):
-    - 이 코드는 코드블럭의 메타데이터를 표시하는 상단바를 추가하는 코드(./metadata.js)가 먼저 로드되어야 합니다.
-======================================================================================================= */
-
-
+*/
 
 (function () {
     "use strict";
@@ -24,15 +22,22 @@
     const COPY_ICON_PATH = "/assets/images/codeblock/copy_button.svg";
     const COPIED_ICON_PATH = "/assets/images/codeblock/copied_button.svg";
 
+    /* DOM 요소 생성 헬퍼 */
+    function createElement(tag, className, textContent) {
+        const element = document.createElement(tag);
+        element.className = className;
+        element.textContent = textContent;
 
-    /* 복사 기능 추가 */
-    async function copy_to_clipboard(text) {
+        return element;
+    }
+
+    /* 복사 기능 */
+    async function copyToClipboard(text) {
         if (navigator.clipboard && window.isSecureContext) {
             return navigator.clipboard.writeText(text);
         }
 
-        // Fallback: Back-up Code
-        // clipboard API는 localhost 또는 https(SecureContext 환경)에서만 작동합니다.
+        // Fallback: clipboard API는 localhost 또는 https(SecureContext 환경)에서만 작동합니다.
         // GitHub Pages는 https(SecureContext)로 빌드되지만, 알 수 없는 예외 상황을 위하여 폴백 복사 기능을 정의합니다.
         const textarea = document.createElement("textarea");
         textarea.value = text;
@@ -45,89 +50,67 @@
         try {
             if (!document.execCommand("copy")) {
                 throw new Error("Failed to copy");
-            };
+            }
         } finally {
             document.body.removeChild(textarea);
         }
     }
 
-
-    function main(codeblock) {
+    /* 복사 버튼 추가 */
+    function renderCopyButton(codeblock) {
         const masthead = codeblock.querySelector(".codeblock-masthead");
         const code = codeblock.querySelector("pre > code");
-        
+
         /* 복사 버튼 생성 */
-        const wrapper = document.createElement("div");
-        wrapper.className = "codeblock-copy";
+        const wrapper = createElement("div", "codeblock-copy");
+        const button = createElement("button", "codeblock-copy_button");
+        button.type = "button";
 
-        // const button = document.createElement("button");
-        // button.className = "codeblock-copy_button";
-        // button.type = "button";
+        const icon = createElement("img", "codeblock-copy_button_icon");
+        icon.src = COPY_ICON_PATH;
+        icon.alt = "";
+        icon.setAttribute("aria-hidden", "true");
 
-        // const icon = document.createElement("img");
-        // icon.className = "codeblock-copy_button_icon";
-        // icon.src = COPY_ICON_PATH;
-        // icon.alt = "";
-        // icon.setAttribute("aria-hidden", "true");
+        const label = createElement("span", "codeblock-copy_button_label", "복사");
 
-        // const label = document.createElement("span");
-        // label.className = "codeblock-copy_button_label";
-        // label.textContent = "복사";
-
-        // button.appendChild(icon);
-        // button.appendChild(label);
-        // wrapper.appendChild(button);
-        // masthead.appendChild(wrapper);
-
-        wrapper.innerHTML = `
-            <button class="codeblock-copy_button" type="button">
-                <img class="codeblock-copy_button_icon" src="${COPY_ICON_PATH}" alt="" aria-hidden="true">
-                <span class="codeblock-copy_button_label">복사</span>
-            </button>
-        `;
-
+        button.append(icon, label);
+        wrapper.appendChild(button);
         masthead.appendChild(wrapper);
 
-        const button = wrapper.querySelector(".codeblock-copy_button");
-        const icon = wrapper.querySelector(".codeblock-copy_button_icon");
-        const label = wrapper.querySelector(".codeblock-copy_button_label");
-
-
         /* 복사 버튼 상태 업데이트 */
-        const update_label = (text, is_copied) => {
+        const updateLabel = (text, isCopied) => {
             label.textContent = text;
-            icon.src = is_copied ? COPIED_ICON_PATH : COPY_ICON_PATH;
-            button.classList.toggle("is-copied", is_copied);
+            icon.src = isCopied ? COPIED_ICON_PATH : COPY_ICON_PATH;
+            button.classList.toggle("is-copied", isCopied);
 
             button.dispatchEvent(new CustomEvent("copybutton:state", {
-                bubbles: true, detail: { text: text, copied: is_copied, icon_path: icon.src }
+                bubbles: true,
+                detail: { text, copied: isCopied, iconPath: icon.src },
             }));
-        }
-
+        };
 
         /* 복사 기능 실행 */
-        let timer = null;  // 복사 버튼 타이머
+        let timer = null;
 
         const copy = async () => {
             try {
-                await copy_to_clipboard(code.textContent || "");
-                update_label("복사됨", true);
-            } catch (error) {
-                timer = setTimeout(() => update_label("복사 실패", false), RESET_TIME);
+                await copyToClipboard(code.textContent || "");
+                updateLabel("복사됨", true);
+            } catch {
+                updateLabel("복사 실패", false);
             } finally {
                 if (timer) clearTimeout(timer);
-                timer = setTimeout(() => update_label("복사", false), RESET_TIME);
+                timer = setTimeout(() => updateLabel("복사", false), RESET_TIME);
             }
         };
 
         button.addEventListener("click", copy);
-        
+
         /* 플로팅 복사 버튼의 복사 요청 응답 */
         button.addEventListener("copybutton:request", copy);
     }
 
-
     document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".highlighter-tree-sitter").forEach(main);
+        document.querySelectorAll(".highlighter-tree-sitter").forEach(renderCopyButton);
     });
 })();
