@@ -1,241 +1,191 @@
-/* ====================================================================================================
-   게시글 스타일링
-   ==================================================================================================== */
+/*
+파일(File):
+    - _sass/customs/_posts.scss
 
+목적(Purpose):
+    - 개별 게시글 페이지의 스타일을 정의합니다.
+
+의존성(Dependencies):
+    - _layouts/post.html
+*/
 
 .post__categories-link {
-  text-decoration: none;
+    text-decoration: none;
+    color: $gray;
 
-  color: $gray;
+    &:hover {
+        color: $blue;
+    }
 
-  &:hover {
-    color: $blue;
-  }
-
-  .post__categories {
-    margin: 0 0 1rem 0;
-
-    font-size: $small-font-size;
-  }
+    .post__categories {
+        margin: 0 0 1rem 0;
+        font-size: $small-font-size;
+    }
 }
-
 
 .post__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 0 1rem 0;
-  margin: 0 0 1rem 0;
-
-  border-bottom: 1px solid $light-gray;
-
-  font-size: $small-font-size;
-
-  .post__author {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 0 1rem 0;
+    margin: 0 0 1rem 0;
+    border-bottom: 1px solid $light-gray;
+    font-size: $small-font-size;
 
-    color: $gray;
+    .post__author {
+        display: flex;
+        align-items: center;
+        color: $gray;
 
-    .post__author-link {
-      text-decoration: none;
+        .post__author-link {
+            text-decoration: none;
+            opacity: 0.7;
 
-      &:hover {
-        color: $blue;
-      }
+            &:hover {
+                color: $blue;
+                opacity: 1;
+            }
+        }
+
+        .post__author-avatar {
+            padding: 0.1rem;
+            width: 32px;
+            height: 32px;
+            border: 1px solid $light-gray;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .post__author-name {
+            margin-left: 0.5rem;
+
+            font-weight: $regular;
+        }
     }
 
-    img {
-      padding: 0.1rem;
-
-      width: 32px;
-      height: 32px;
-
-      border: 1px solid $light-gray;
-      border-radius: 50%;
-
-      object-fit: cover;
+    .post__date {
+        margin: 0 0 0 1rem;
+        font-size: $x-small-font-size;
+        font-weight: $light;
+        color: $gray;
     }
 
-    .post__author-name {
-      margin: 0 0 0 0.5rem;
+    /* URL 복사 */
+    .post__share {
+        .post__share-btn {
+            font-size: $small-font-size;
+            color: $gray;
 
-      font-weight: $regular;
+            &:hover {
+                color: $blue;
+                cursor: pointer;
+            }
+        }
     }
-  }
-
-
-  .post__date {
-    margin: 0 0 0 1rem;
-
-    font-size: $x-small-font-size;
-    font-weight: $light;
-
-    color: $gray;
-  }
-
-
-  /* URL 복사 */
-  .post__share {
-    a {
-      font-size: $small-font-size;
-
-      color: $gray;
-
-      &:hover {
-        color: $blue;
-
-        cursor: pointer;
-      }
-    }
-  }
 }
-
-
 
 .page__inner-wrap {
-  .page__title {
-    margin: 0 0 1.5rem 0;
-
-    font-size: $h-size-1;
-    font-weight: $medium;
-  }
-
-  .page__content {
-    p {
-      margin: 0 0 1rem 0;
-      font-size: $doc-font-size;
-    } 
-    
-    li, dl {
-      font-size: $doc-font-size;
+    .page__title {
+        margin: 0 0 1.5rem 0;
+        font-size: $h-size-1;
+        font-weight: $medium;
     }
 
-    h1 {
-      margin: 1.5rem 0;
-
-      font-size: $h-size-1;
-      font-weight: $medium;
-    }
-
-    h2 {
-      padding: 0;
-      margin: 0 0 1rem 0;
-
-      border: none;
-
-      font-size: $h-size-2;
-      font-weight: $medium;
-    }
-
-    h3 {
-      margin: 0 0 0.1rem 0;
-
-      font-size: $h-size-3;
-      font-weight: $medium;
-    }
-
-    h4 {
-      margin: 0 0 0.1rem 0;
-
-      font-size: $h-size-4;
-      font-weight: $medium;
-    }
-
-    h5 {
-      margin: 0 0 0.1rem 0;
-
-      font-size: $h-size-5;
-      font-weight: $medium;
-    }
-
-    h6 {
-      margin: 0 0 0.1rem 0;
-
-      font-size: $h-size-6;
-      font-weight: $medium;
-    }
-
-    hr {
-      margin: 1.5rem 0;
-    }
-
-
-    #table-of-content {
-      a {
-        text-decoration: none;
-
-        color: $blue;
-
-
-        &:hover {
-          text-decoration: underline;
-          text-underline-offset: 2px;
+    .page__content {
+        p {
+            margin: 0 0 1rem 0;
+            font-size: $doc-font-size;
         }
-      }
-    }
-  }
-}
 
+        li, dl {
+            font-size: $doc-font-size;
+        }
+
+        h1 {
+            margin: 1.5rem 0;
+            font-size: $h-size-1;
+            font-weight: $medium;
+        }
+
+        h2 {
+            padding: 0;
+            margin: 0 0 1rem 0;
+            border: none;
+            font-size: $h-size-2;
+            font-weight: $medium;
+        }
+
+        h3 {
+            margin: 0 0 0.1rem 0;
+            font-size: $h-size-3;
+            font-weight: $medium;
+        }
+
+        h4 {
+            margin: 0 0 0.1rem 0;
+            font-size: $h-size-4;
+            font-weight: $medium;
+        }
+
+        h5 {
+            margin: 0 0 0.1rem 0;
+            font-size: $h-size-5;
+            font-weight: $medium;
+        }
+
+        h6 {
+            margin: 0 0 0.1rem 0;
+            font-size: $h-size-6;
+            font-weight: $medium;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+        }
+    }
+}
 
 blockquote {
-  padding-inline: 0.5rem;
-  margin: 1rem 1rem;
-
-  font-style: normal;
-
-  background-color: $extra-light-gray;
+    padding-inline: 0.5rem;
+    margin: 1rem 1rem;
+    background-color: $extra-light-gray;
+    font-style: normal;
 }
-
 
 .post-taxonomy__body {
-  display: flex;
-  align-items: baseline;
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    margin: 0 0 3rem 0;
 
-  margin: 0 0 3rem 0;
-  gap: 0.25rem;
-}
+    .post-taxonomy__label {
+        white-space: nowrap;
+    }
 
+    .post-taxonomy__tokens {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
 
-.post-taxonomy__label {
-  white-space: nowrap;
-}
+    .post-taxonomy__token {
+        padding: 0.1rem 0.5rem;
+        border: 1px solid $light-gray;
+        border-radius: 999px;
+        font-size: $x-small-font-size;
+        line-height: 1.2;
+        text-decoration: none;
+        color: $gray;
+    }
 
+    .post-taxonomy__token--tag {
+        font-weight: $regular;
+        color: $light-gray;
 
-.post-taxonomy__tokens {
-  display: flex;
-  align-items: center;
-    
-  gap: 0.25rem;
-
-  flex-wrap: wrap;
-}
-
-
-.post-taxonomy__token {
-  padding: 0.1rem 0.5rem;
-
-  border: 1px solid $light-gray;
-  border-radius: 999px;
-  
-  font-size: $x-small-font-size;
-  
-  text-decoration: none;
-  line-height: 1.2;
-
-  color: $gray;
-}
-
-
-.post-taxonomy__token--tag {
-  font-weight: $regular;
-
-  &:hover {
-    border-color: $black;
-
-    font-weight: $bold;
-        
-    color: $black;
-  }
+        &:hover {
+            border-color: $black;
+            color: $black;
+        }
+    }
 }
