@@ -38,7 +38,7 @@
 .posts-archive-item__teaser {
     overflow: hidden;
     display: flex;
-    width: 15%;
+    width: 10%;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
@@ -55,7 +55,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .posts-archive-item__body {
@@ -84,6 +84,7 @@
 
 .posts-archive-item__subtitle {
     overflow: hidden;
+    padding-right: 1rem;
     margin: 0 0 0.25rem;
     font-size: $x-small-font-size;
     white-space: nowrap;
@@ -98,6 +99,7 @@
     overflow: hidden;
     display: -webkit-box;
     min-height: calc(1.4em * 3);
+    padding-right: 1rem;
     margin: 0.1rem 0;
     font-size: $x-small-font-size;
     line-height: 1.4;
