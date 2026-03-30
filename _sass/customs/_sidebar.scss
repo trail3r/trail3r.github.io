@@ -1,56 +1,159 @@
-/* ====================================================================================================
-   사이드바 스타일링
-   ==================================================================================================== */
+/*
+파일(File):
+    - _sass/customs/_sidebar.scss
 
+목적(Purpose):
+    - 사이드바의 스타일을 정의합니다.
+
+의존성(Dependencies):
+    - _includes/customs/sidebar.html
+    - _includes/customs/author-profile.html
+*/
 
 .sidebar {
-  font-family: $sans-serif;
+    display: flex;
+    flex-direction: column;
 
+    height: 100vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
 
-  li, p {
-    line-height: 1.2;
-  }
+    font-family: $navigation-font-family;
 
-  // 프로필(Author Profile)의 크기도 조절합니다.
-  .author__name {
-    font-size: $standard-font-size;
-  }
-
-  .author__bio {
-    margin: 0.25rem 0 1rem 0;
-
-    font-size: $x-small-font-size;
-
-    p {
-      margin: 0.25rem 0 1rem 0;
-
-      font-size: $x-small-font-size;
-    }
-  }
-
-  .author__urls {
-    font-size: $small-font-size;
-
-    ul, li {
-      margin-bottom: 0.35rem;
-    }
-  }
-
-
-  /* 사이드바 네비게이션 스타일링 */
-  .nav__items {
-    .nav__sub-title {
-      margin: 0.5rem 0 0.25rem 0;
-
-      font-size: $x-small-font-size;
+    li, p {
+        line-height: 1.2;
     }
 
-    a {
-      font-size: $xx-small-font-size;
-
-      &.active {
-        font-weight: $semibold;
-      }
+    .h-card {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
     }
-  }
+
+    .author__profile {
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+    }
+
+    .author__avatar {
+        display: block;
+        width: 64px;
+        height: auto;
+    }
+
+    .author__name {
+        margin-left: 0.5rem;
+        font-family: $navigation-font-family;
+        font-size: $small-font-size;
+        font-weight: $regular;
+    }
+
+    .author__bio {
+        margin: 0.5rem 0.5rem 0 0;
+        border-bottom: 1px solid $extra-light-gray;
+
+        p {
+            margin: 0.25rem 0 1rem 0;
+            font-family: $navigation-font-family;
+            font-size: $xx-small-font-size;
+            font-weight: $regular;
+        }
+    }
+
+    .author__urls {
+        font-size: $small-font-size;
+
+        ul, li {
+            margin-bottom: 0.35rem;
+        }
+    }
+}
+
+.sidebar-nav__wrapper {
+    margin: 0.25rem 0;
+
+    & input[type=checkbox], & label {
+        display: none;
+    }
+
+    .sidebar-nav__items {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid $extra-light-gray;
+    }
+
+    .sidebar-nav__title {
+        margin: 0.5rem 0;
+        font-family: $navigation-font-family;
+        font-size: $xx-small-font-size;
+        font-weight: $regular;
+    }
+
+    .sidebar-nav__links {
+        display: block;
+        padding-left: 0.5rem;
+    }
+
+    .sidebar-nav__link {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-family: $navigation-font-family;
+        font-size: $xx-small-font-size;
+        font-weight: $regular;
+    }
+
+    .sidebar-nav__item {
+        display: flex;
+        justify-content: space-between;
+        color: $gray;
+
+        &:hover {
+            color: $black;
+        }
+
+        &.active {
+            color: $blue;
+        }
+    }
+
+    .post-count {
+        padding: 0.1rem;
+        margin-right: 0.5rem;
+    }
+}
+
+.author__urls-wrapper {
+    margin-top: auto;
+    margin-right: 0.5rem;
+
+    .author__follow-label {
+        margin: 0 0 0.5rem 0;
+        font-family: $navigation-font-family;
+        font-size: $xx-small-font-size;
+        font-weight: $regular;
+    }
+
+    .author__follow-list {
+        display: grid;
+        gap: 0.25rem;
+        grid-template-columns: 1fr 1fr;
+
+        .label {
+            margin-left: 0.25rem;
+            font-family: $navigation-font-family;
+            font-size: $xxx-small-font-size;
+            font-weight: $regular;
+        }
+    }
+
+    .author__follow-link {
+        color: $gray;
+        opacity: 0.7;
+
+        &:hover {
+            text-decoration: none;
+            color: $black;
+            opacity: 1;
+        }
+    }
 }
