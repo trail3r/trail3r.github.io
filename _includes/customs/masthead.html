@@ -34,11 +34,11 @@
                     {%- for link in site.data.navigation.main -%}
                         {%- if link.children and link.children.size > 0 -%}
                             <li class="dropdown">
-                                <button class="dropdown__toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="dropdown__toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ link.title }}
                                     <i class="fa fa-caret-down fa-sm" aria-hidden="true"></i>
                                     <span class="caret"></span>
-                                </button>
+                                </a>
 
                                 <ul class="dropdown__menu">
                                     {%- for children in link.children -%}
