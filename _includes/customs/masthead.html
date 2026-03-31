@@ -8,6 +8,7 @@
 의존성(Dependencies):
     - _data/navigation.yml
     - _sass/customs/_masthead.scss
+    - assets/js/customs/masthead.js
 {%- endcomment -%}
 
 {%- capture logo_path -%}{{ site.logo }}{%- endcapture -%}
@@ -69,6 +70,95 @@
                 </button>
 
                 <ul class="hidden-links hidden"></ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="mobile-masthead__inner-wrap">
+        <div class="mobile-masthead__menu">
+            <nav class="mobile-nav" id="mobile-nav">
+                {%- unless logo_path == empty -%}
+                    <a class="mobile-site-logo" href="{{ '/' | relative_url }}">
+                        <img src="{{ logo_path | relative_url }}" alt="{{ site.masthead_title | default: site.title }}">
+                    </a>
+                {%- endunless -%}
+
+                <a class="mobile-site-title" href="{{ '/' | relative_url }}">
+                    {{ site.masthead_title | default: site.title | escape_once | strip }}
+
+                    {%- if site.subtitle -%}
+                        <span class="mobile-site-subtitle">{{ site.subtitle | escape_once | strip }}</span>
+                    {%- endif -%}
+                </a>
+
+                {%- if site.search == true -%}
+                    <button class="search__toggle" type="button">
+                        <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: "Toggle search" }}</span>
+                        <i class="fas fa-search"></i>
+                    </button>
+                {%- endif -%}
+
+                <button class="mobile-nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-links">
+                    <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_toggle_label | default: "Toggle menu" }}</span>
+                    <div class="navicon"></div>
+                </button>
+
+                <div class="mobile-nav__blur" id="mobile-nav__blur"></div>
+                
+                <ul class="mobile-links" id="mobile-links" aria-hidden="true">
+                    
+                    <div class="mobile-author__profile">
+                        <div class="mobile-author__meta">
+                            {% if author.avatar %}
+                                <a class="mobile-author__link" href="{{ author.home | default: '/' | absolute_url }}">
+                                    <img class="mobile-author__avatar" src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" itemprop="image">
+                                    <p class="mobile-author__name">{{ author.name }}</p>
+                                </a>
+                            {% endif %}
+                        </div>
+
+                        {%- if author.bio -%}
+                            <div class="mobile-author__bio">{{ author.bio | markdownify }}</div>
+                        {%- endif -%}
+                    </div>
+
+                    <div class="mobile-nav-menu">
+                        {%- for link in site.data.navigation.main -%}
+                            {%- if link.children and link.children.size > 0 -%}
+                                <details class="accordion">
+                                    <summary class="accordion__toggle">
+                                        {{ link.title | escape_once }}
+                                        <i class="accordion__arrow fas fa-chevron-right" aria-hidden="true"></i>
+                                    </summary>
+
+                                    <ul class="accordion__menu">
+                                        {%- for child in link.children -%}
+                                            <a class="accordion__item" href="{{ child.url | relative_url }}">
+                                                <p class="accordion__item-title">{{ child.title | escape_once }}</p>
+                                            </a>
+                                        {%- endfor -%}
+                                    </ul>
+                                </details>
+                            {%- else -%}
+                                <li class="accordion__links">
+                                    <a href="{{ link.url | relative_url }}">{{ link.title | escape_once}}</a>
+                                </li>
+                            {%- endif -%}
+                        {%- endfor -%}
+                    </div>
+
+                    <div class="mobile-nav__follow">
+                        <p class="mobile-nav__follow-label">
+                            {{ site.data.ui-text[site.locale].follow_label | remove: ":" | default: "Follow" }}
+                        </p>
+
+                        <li class="mobile-nav__follow-list">
+                            {%- for link in author.links -%}
+                                <a class="mobile-nav__follow-icon" href="{{ link.url }}">{%- include customs/links-icon.html icon=link.icon %}<span class="label">{{ link.label }}</span></a>
+                            {%- endfor -%}
+                        </li>
+                    </div>
+                </ul>
             </nav>
         </div>
     </div>
