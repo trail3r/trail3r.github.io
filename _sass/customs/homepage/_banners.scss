@@ -24,3 +24,9 @@
     box-shadow: none !important;  // Minimal Mistakes 테마의 이미지 그림자 효과 제거
     object-fit: contain;
 }
+
+@media (max-width: 768px) {
+    .banners {
+        display: none;
+    }
+}

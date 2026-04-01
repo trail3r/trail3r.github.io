@@ -20,4 +20,32 @@
             box-shadow: none !important;  // Minimal Mistakes 테마의 이미지 그림자 효과 제거
         }
     }
+
+    .mobile-teaser__image {
+        display: block;
+        width: 100%;
+        height: auto;
+
+        &:hover {
+            box-shadow: none !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .teaser__image {
+            display: none;  // 모바일 환경에서는 PC 환경의 홈페이지 티저 이미지 가림
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+    }
+
+    .mobile-teaser__link {
+        display: none;
+
+        @media (max-width: 768px) {
+            display: block;
+        }
+    }
 }

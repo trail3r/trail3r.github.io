@@ -98,3 +98,9 @@
         font-size: $xx-small-font-size;
     }
 }
+
+@media (max-width: 768px) {
+    .notice__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
