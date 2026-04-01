@@ -78,7 +78,9 @@ layout: default
 
                         {%- if page.share -%}
                             <section class="post__share">
-                                <a class="post__share-btn" onclick="navigator.clipboard.writeText(window.location.href.toString())">URL 복사</a>
+                                <a class="post__share-btn" onclick="navigator.clipboard.writeText(window.location.href.toString())">
+                                    <span class="btn__label">URL 복사</span>
+                                </a>
                             </section>
                         {%- endif -%}
                     </div>
