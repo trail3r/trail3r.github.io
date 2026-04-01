@@ -132,3 +132,15 @@
         color: $gray;
     }
 }
+
+@media (max-width: 768px) {
+    .archive {
+        .page__title {
+            font-size: $standard-font-size;
+        }
+    }
+
+    .posts-archive-item__teaser {
+        width: 25%;
+    }
+}
