@@ -34,7 +34,8 @@ layout: default
                 <header>
                     {%- if page.categories -%}
                         {%- assign category = page.categories | first -%}
-                        {%- assign category_path = site.category_archive.path | default: "/categories/" | relative_url | append: "#" | append: (category | slugify) -%}
+                        {%- assign category_slug = category | slugify -%}
+                        {%- assign category_path = site.category_archive.path | default: "/categories/" | relative_url | append: "#" | append: category_slug -%}
 
                         {%- for navigation in site.data.navigation.main -%}
                             {%- if navigation.title == category -%}
