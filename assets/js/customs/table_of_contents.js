@@ -15,11 +15,6 @@
     const toc = document.querySelector("#table-of-contents");
     const content = document.querySelector("#table-of-content");
 
-    if (!toc) {
-        // 목차를 비활성화 한 경우에는 스크립트를 즉시 종료하여 연산량을 줄입니다.
-        return;
-    }
-
     const HEADING = "h2, h3, h4, h5, h6";
 
 
@@ -37,7 +32,85 @@
     /* 앵커로부터 ID 생성 */
     const identifier = (href) => {
         const id = href.indexOf("#");
+        if (id < 0) return "";
+
         return decoder(href.slice(id + 1));
+    }
+
+
+    /* 상단 메뉴바 높이 계산 */
+    const get_scroll_offset = () => {
+        const masthead = document.querySelector(".masthead");
+        const masthead_height = masthead ? masthead.getBoundingClientRect().height : 0;
+
+        return Math.ceil(masthead_height + 16);
+    };
+
+
+    /* 현재 페이지 내부 앵커인지 확인 */
+    const is_same_page_anchor = (a) => {
+        const href = a.getAttribute("href");
+        if (!href || href.indexOf("#") < 0) return false;
+
+        const url = new URL(a.href, window.location.href);
+
+        return (
+            url.origin === window.location.origin &&
+            url.pathname === window.location.pathname &&
+            url.search === window.location.search
+        );
+    };
+
+
+    /* 부드러운 스크롤 및 클릭 이벤트 관리 */
+    const smooth_scroll = (e, a) => {
+        e.preventDefault();
+
+        const id = identifier(a.getAttribute("href"));
+        if (!id) {
+            // ID가 비어있는 것은 화면의 최상단으로 이동하는 경우입니다.
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            history.pushState(null, "", window.location.pathname + window.location.search);
+            return;
+        }
+
+        const target = document.getElementById(id);
+        if (target) {
+            // ID가 실제 DOM에 존재할 때만 스크롤을 이동합니다. (사용자가 존재하지 않는 임의의 경로를 입력한 경우 무시)
+            const top = target.getBoundingClientRect().top + window.pageYOffset - get_scroll_offset();
+
+            history.pushState(null, "", `#${encodeURIComponent(id)}`);
+            window.scrollTo({ top, behavior: "smooth" });
+        }
+    };
+
+
+    document.addEventListener("click", (e) => {
+        if (e.defaultPrevented) return;
+
+        const anchor = e.target.closest('a[href*="#"]');
+        if (anchor && is_same_page_anchor(anchor)) {
+            smooth_scroll(e, anchor);
+        }
+    });
+
+
+    if (window.location.hash) {
+        window.setTimeout(() => {
+            const id = identifier(window.location.hash);
+            const target = id ? document.getElementById(id) : null;
+
+            if (target) {
+                const top = target.getBoundingClientRect().top + window.pageYOffset - get_scroll_offset();
+                window.scrollTo({ top, behavior: "auto" });
+            }
+        }, 0);
+    }
+
+
+    if (!toc || !content) {
+        // 목차를 비활성화 한 경우에는 ScrollSpy 연산을 생략합니다.
+        return;
     }
 
 
@@ -81,33 +154,4 @@
     );
 
     heading.forEach((h) => observer.observe(h));
-
-
-    /* 부드러운 스크롤 및 클릭 이벤트 관리 */
-    const smooth_scroll = (e, a) => {
-        e.preventDefault();
-
-        const id = identifier(a.getAttribute("href"));
-        if (!id) {
-            // ID가 비어있는 것은 화면의 최상단으로 이동하는 경우입니다.
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            history.pushState(null, "", window.location.pathname + window.location.search);
-            return;
-        }
-
-        const target = document.getElementById(id);
-        if (target) {
-            // ID가 실제 DOM에 존재할 때만 스크롤을 이동합니다. (사용자가 존재하지 않는 임의의 경로를 입력한 경우 무시)
-            history.pushState(null, "", `#${encodeURIComponent(id)}`);
-            target.scrollIntoView({ behavior: "smooth" });
-        }
-    };
-
-
-    document.addEventListener("click", (e) => {
-        const anchor = e.target.closest('#table-of-contents a[href^="#"], a.header-link[href^="#"]');
-        if (anchor) {
-            smooth_scroll(e, anchor);
-        }
-    });
 })();
