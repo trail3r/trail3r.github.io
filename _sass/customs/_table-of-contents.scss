@@ -48,6 +48,10 @@
                 color: $black;
             }
 
+            &:focus {
+                outline: none;
+            }
+
             &.active {
                 color: $blue;
                 transition: all 0.125s ease-in 0s;

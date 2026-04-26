@@ -79,9 +79,9 @@ layout: default
 
                         {%- if page.share -%}
                             <section class="post__share">
-                                <a class="post__share-btn" onclick="navigator.clipboard.writeText(window.location.href.toString())">
+                                <button class="post__share-btn" type="button" data-copy-url-button data-copy-url="{{ page.url | absolute_url }}">
                                     <span class="btn__label">URL 복사</span>
-                                </a>
+                                </button>
                             </section>
                         {%- endif -%}
                     </div>

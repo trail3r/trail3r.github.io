@@ -12,7 +12,7 @@
 
 <section class="page__share">
     <h4 class="page__share-title">{{ site.data.ui-text[site.locale].share_on_label | default: "Share on" }}</h4>
-    <a class="btn btn--copyUrl" onclick="navigator.clipboard.writeText(window.location.href.toString())">
+    <button class="btn btn--copyUrl" type="button" data-copy-url-button data-copy-url="{{ page.url | absolute_url }}">
         <span>URL 복사</span>
-    </a>
+    </button>
 </section>

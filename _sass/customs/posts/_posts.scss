@@ -73,12 +73,20 @@
     /* URL 복사 */
     .post__share {
         .post__share-btn {
+            padding: 0;
+            border: none;
+            background: transparent;
+            font-family: $sans-serif;
             font-size: $small-font-size;
             color: $gray;
 
             &:hover {
                 color: $blue;
                 cursor: pointer;
+            }
+
+            &:focus {
+                outline: none;
             }
         }
     }
