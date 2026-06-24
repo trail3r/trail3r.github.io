@@ -1,0 +1,44 @@
+/*
+파일(File):
+    - _sass/customs/posts/_image.scss
+
+목적(Purpose):
+    - 게시글 내 수평으로 배치된 여러 개의 이미지 스타일을 정의합니다.
+
+의존성(Dependencies):
+    - _includes/customs/posts/image_grid.html
+*/
+
+.page__inner-wrap {
+    .page__content {
+        .image-grid {
+            display: grid;
+            align-items: stretch;
+            gap: 5px;
+            width: 100%;
+            margin: 0;
+            grid-template-columns: repeat(var(--size, 2), minmax(0, 1fr));
+
+            &.left-weighted {
+                grid-template-columns: 16fr 9fr;
+            }
+
+            &.center-weighted {
+                grid-template-columns: 9fr 16fr 9fr;
+            }
+
+            &.right-weighted {
+                grid-template-columns: 9fr 16fr;
+            }
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                border-radius: 0;
+                object-fit: cover;
+            }
+        }
+    }
+}
