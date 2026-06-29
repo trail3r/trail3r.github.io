@@ -28,6 +28,10 @@
         font-weight: $semibold;
         color: $black;
 
+        &:focus {
+            outline: none;
+        }
+
         &:hover {
             text-decoration: none !important;
             color: $blue;

@@ -21,6 +21,134 @@ header:
 
 
 
+## OMS 지리산 표류 일지
+
+---
+
+<table class="post-table desktop">
+    <colgroup>
+        <col class="column-index"><col class="column-contents"><col class="column-index"><col class="column-contents">
+    </colgroup>
+    <tbody class="post-table__body">
+        <tr>
+            <td class="index">1</td><td class="contents">
+                <a class="contents__link" href="#그들이-갑자기-지리산을-가게-된-이유">
+                    <p class="contents__title">그들이 갑자기 지리산을 가게 된 이유</p>
+                    <p class="contents__subtitle">OMS, 그들은 어쩌다 국방력에 공백을 만들었는가</p>
+                </a>
+            </td>
+            <td class="index">5</td><td class="contents">
+                <a class="contents__link" href="#we-are-oms">
+                    <p class="contents__title">We Are OMS</p>
+                    <p class="contents__subtitle">OMS, 천왕봉에 도달하다.</p>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="index">2</td><td class="contents">
+                <a class="contents__link" href="#상남자들의-겨울-산행-브리핑">
+                    <p class="contents__title">상남자들의 겨울 산행 브리핑</p>
+                    <p class="contents__subtitle">SAPF 문을 열 자, 천왕봉 등반은 거뜬할지어다.</p>
+                </a>
+            </td>
+            <td class="index">6</td><td class="contents">
+                <a class="contents__link" href="#해발고도-1915m-우리의-낭만을-고이-간직해-봅니다">
+                    <p class="contents__title">해발고도 1915m. 우리의 낭만을 고이 간직해 봅니다.</p>
+                    <p class="contents__subtitle">내일은 내일의 해가 뜰 테니</p>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="index">3</td><td class="contents">
+                <a class="contents__link" href="#oms-사천-공군-기지-점령">
+                    <p class="contents__title">OMS, 사천 공군 기지 점령</p>
+                    <p class="contents__subtitle">첫 번째 Waypoint인 3훈비 숙소 점령 성공</p>
+                </a>
+            </td>
+            <td class="index">7</td><td class="contents">
+                <a class="contents__link" href="#금산패밀리펜션">
+                    <p class="contents__title">금산패밀리펜션</p>
+                    <p class="contents__subtitle">끝난 줄 알았나요? 군인들은 지치지 않습니다.</p>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="index">4</td><td class="contents">
+                <a class="contents__link" href="#5시간-30분-그-안에-모든-것을-해결해야-한다">
+                    <p class="contents__title">5시간 30분. 그 안에 모든 것을 해결해야 한다.</p>
+                    <p class="contents__subtitle">대한민국을 지키는 보이지 않는 가장 높은 힘이 되기 위한 여정</p>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class="post-table mobile">
+    <colgroup>
+        <col class="column-index"><col class="column-contents">
+    </colgroup>
+    <tbody class="post-table__body">
+        <tr>
+            <td class="index">1</td><td class="contents">
+                <a class="contents__link" href="#그들이-갑자기-지리산을-가게-된-이유">
+                    <p class="contents__title">그들이 갑자기 지리산을 가게 된 이유</p>
+                    <p class="contents__subtitle">OMS, 그들은 어쩌다 국방력에 공백을 만들었는가</p>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="index">2</td><td class="contents">
+                <a class="contents__link" href="#상남자들의-겨울-산행-브리핑">
+                    <p class="contents__title">상남자들의 겨울 산행 브리핑</p>
+                    <p class="contents__subtitle">SAPF 문을 열 자, 천왕봉 등반은 거뜬할지어다.</p>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="index">3</td><td class="contents">
+                <a class="contents__link" href="#oms-사천-공군-기지-점령">
+                    <p class="contents__title">OMS, 사천 공군 기지 점령</p>
+                    <p class="contents__subtitle">첫 번째 Waypoint인 3훈비 숙소 점령 성공</p>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="index">4</td><td class="contents">
+                <a class="contents__link" href="#5시간-30분-그-안에-모든-것을-해결해야-한다">
+                    <p class="contents__title">5시간 30분. 그 안에 모든 것을 해결해야 한다.</p>
+                    <p class="contents__subtitle">대한민국을 지키는 보이지 않는 가장 높은 힘이 되기 위한 여정</p>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="index">5</td><td class="contents">
+                <a class="contents__link" href="#we-are-oms">
+                    <p class="contents__title">We Are OMS</p>
+                    <p class="contents__subtitle">OMS, 천왕봉에 도달하다.</p>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="index">6</td><td class="contents">
+                <a class="contents__link" href="#해발고도-1915m-우리의-낭만을-고이-간직해-봅니다">
+                    <p class="contents__title">해발고도 1915m. 우리의 낭만을 고이 간직해 봅니다.</p>
+                    <p class="contents__subtitle">내일은 내일의 해가 뜰 테니</p>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="index">7</td><td class="contents">
+                <a class="contents__link" href="#금산패밀리펜션">
+                    <p class="contents__title">금산패밀리펜션</p>
+                    <p class="contents__subtitle">끝난 줄 알았나요? 군인들은 지치지 않습니다.</p>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br><br>
+
+
+
 ## 그들이 갑자기 지리산을 가게 된 이유
 <p class="posts-subtitle">OMS, 그들은 어쩌다 국방력에 공백을 만들었는가</p>
 
@@ -92,7 +220,7 @@ header:
 
 
 ## 5시간 30분. 그 안에 모든 것을 해결해야 한다.
-<p class="posts-subtitle">진정한 대한민국을 지키는 보이지 않는 가장 높은 힘이 되기 위한 여정</p>
+<p class="posts-subtitle">대한민국을 지키는 보이지 않는 가장 높은 힘이 되기 위한 여정</p>
 
 ---
 
