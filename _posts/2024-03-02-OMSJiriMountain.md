@@ -10,7 +10,7 @@ categories: ["개구리의 일상"]
 tags: ["OMS"]
 
 header:
-    teaser: /assets/images/posts/fictions/daily/OMSJiriMountain/
+    teaser: /assets/images/posts/daily/OMSJiriMountain/20240302_OMSJiriMountain_49.jpeg
 ---
 
 &emsp;대한민국 공군 유일 팀 OMS. 그들이 이번에는 지리산으로 향했습니다. 목적지는 고도 6282.8ft인 천왕봉. <span style="color: #808080">(1915m; 공군이라 괜히 피트로 이야기하고 싶었습니다...)</span> 정말 힘들었지만, 정말 알차고 정말 낭만 넘치는 겨울 산행이었어요. 그 짧은 여정을 함께 즐겨보실까요?!<br>
