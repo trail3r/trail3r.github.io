@@ -104,9 +104,13 @@
         }
 
         @media (max-width: 600px) {
-            .opengraph.has-image {
-                .opengraph__link {
-                    flex-direction: column;
+            .opengraph{
+                width: 75%;
+            
+                &.has-image {
+                    .opengraph__link {
+                        flex-direction: column;
+                    }
                 }
             }
 
