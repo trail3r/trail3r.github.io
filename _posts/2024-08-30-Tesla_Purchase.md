@@ -10,7 +10,7 @@ categories: ["개구리의 일상"]
 tags: ["Telsa"]
 
 header:
-    teaser: /assets/images/posts/daily/HappyBirthday/.jpeg
+    teaser: /assets/images/posts/daily/Tesla_Purchase/20240830_Tesla_Purchase_4.png
 ---
 
 &emsp;안녕하세요, 개구리 밀실 블로그 주인장 개구리입니다. 차를 계약했어요. 테슬라 모델3로 말이죠. 아주 그냥 정신 나갔다고 할 수 있겠어요. 스물셋밖에 안된 젊은 청년이 어쩌다 이런 고난 길을 선택했는지 썰이나 좀 풀어볼게요. 2학기 시작되면 어차피 또 블로그 자주 못 쓸 거 같으니까 이런 거라도 써야겠어요.<br>
