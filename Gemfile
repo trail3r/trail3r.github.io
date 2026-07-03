@@ -4,6 +4,7 @@ gem "jekyll"
 gem "minimal-mistakes-jekyll"
 gem "webrick"
 gem "jekyll-paginate-v2"
+gem "jekyll-url-metadata"
 
 gem "kramdown-syntax_tree_sitter",
     git: "https://github.com/trail3r/kramdown-syntax_tree_sitter.git",

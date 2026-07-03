@@ -20,5 +20,15 @@
             background: $gray;
             opacity: 0.75;
         }
+
+        .narrow {
+            display: block;
+            width: 10rem;
+            height: 2px;
+            margin: 1.5rem auto;
+            border: 0;
+            background: $gray;
+            opacity: 0.75;
+        }
     }
 }

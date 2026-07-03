@@ -152,6 +152,12 @@
             color: $gray;
         }
 
+        .contents {
+            &.center {
+                text-align: center;
+            }
+        }
+
         #table-of-content {
             [id] {
                 scroll-margin-top: 4rem;

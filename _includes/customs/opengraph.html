@@ -1,0 +1,128 @@
+{% comment %}
+
+파일(File)
+---------
+_includes/customs/opengraph.html
+
+개요(Summary)
+------------
+게시글에 Open Graph를 통해 링크 미리보기 카드를 렌더링 합니다.
+Render an Open Graph link preview card inside a post.
+
+매개변수(Parameters)
+------------------
+url: 문자열(string), 필수사항(required)
+    Open Graph 미리보기 카드를 만들 URL입니다.
+    Target URL for the Open Graph link preview card.
+title: 문자열(string), 선택사항(optional)
+    Open Graph 미리보기 카드에 표시할 제목을 설정할 수 있습니다.
+    Open Graph 메타 데이터 내 제목이 유효하지 않은 경우 이 제목을 사용합니다.
+    The title to display on the Open Graph link preview card.
+    Used when Open Graph metadata is invalid.
+description: 문자열(string), 선택사항(optional)
+    Open Graph 미리보기 카드에 표시할 링크 설명을 설정할 수 있습니다.
+    Open Graph 메타 데이터 내 설명이 유효하지 않은 경우 이 설명을 사용합니다.
+    The description to display on the Open Graph link preview card.
+    Used when Open Graph metadata is invalid.
+image: 문자열(string), 선택사항(optional)
+    Open Graph 미리보기 카드에 표시할 이미지를 설정할 수 있습니다. 이미지 경로나 절대 경로를 통해 설정합니다.
+    The image to disaply on the Open Graph link preview card. Set via image path or absolute path.
+domain: 문자열(string), 선택사항(optional)
+    Open Graph 미리보기 카드에 표시할 도메인을 설정할 수 있습니다. 기본값은 URL입니다.
+    The domain to display on the Open Graph link preview card. Default to the resolved URL.
+target: 문자열(string), 선택사항(optional)
+    Open Graph 미리보기 카드 클릭 시 페이지가 열리는 방식을 설정할 수 있습니다. 기본값은 '_blank' (새 탭에서 열기)입니다.
+    Set how the page opens when click the Open Graph link preview card.
+    Default to '_blank' (open in a new tab).
+class: 문자열(string), 선택사항(optional)
+    '.opengraph' 요소 뒤에 추가로 붙일 클래스명입니다.
+    Extra class name appended to the root '.opengraph' element.
+
+반환값(Returns)
+-------------
+HTML
+    앵커, 대표 이미지, 제목, 링크 설명, 도메인명을 가진 '.opengraph' 블록을 반환합니다.
+    A '.opengraph' block element containing an anchor, thumbnail, title, description,
+    and domain label.
+
+참고사항(Notes)
+-------------
+메타 데이터는 'jekyll-url-metadata' 플러그인에 의해 제공됩니다. 모든 사이트가 Open Graph 태그를 제공하는 것은 아닙니다.
+그러한 사이트는 사이트명, 도메인, 또는 URL을 기본값으로 사용합니다. 이러한 값들은 사용자가 직접 덮어쓰기 할 수 있습니다.
+Metadata filter is provided by the 'jekyll-url-metadata' plugin.
+Not every site exposes Open Graph tags. For thos sites, the include falls back to the page title,
+domain, or URL, and individual values can be overridden with include parameters.
+
+예시(Examples)
+-------------
+{% include customs/opengraph.html url="https://blog.naver.com/trail3r" %}
+{% include customs/opengraph.html url="https://blog.naver.com/trail3r" title="Frog Studio" %}
+
+{% endcomment %}
+
+
+{%- comment -%} 메타데이터 수집 (Crawling Open Graph Metadata) {%- endcomment -%}
+{%- assign url = include.url | default: "" -%}
+{%- assign metadata = url | metadata -%}
+{%- assign og_title = metadata["og:title"] | default: metadata["title"] -%}
+{%- assign og_description = metadata["og:description"] | default: metadata["description"] -%}
+{%- assign og_image = metadata["og:image"] | default: metadata["twitter:image"] -%}
+{%- assign og_domain = metadata["og:site_name"] -%}
+
+{%- assign description = include.description | default: og_description -%}
+{%- assign image = include.image | default: og_image -%}
+{%- assign domain = include.domain | default: og_domain -%}
+{%- assign target = include.target | default: "_blank" -%}
+
+
+{%- comment -%}
+'og:site_name' 태그가 존재하지 않는 사이트에 대비해 기본값을 설정합니다.
+Use a domain fallback when the target page does not provide 'og:site_name' tag.
+{%- endcomment -%}
+
+{%- if domain == nil or domain == "" -%}
+    {%- assign domain = url | replace: "https://", "" | replace: "http://", "" | split: "/" | first -%}
+{%- endif -%}
+{%- assign title = include.title | default: og_title | default: domain | default: url -%}
+
+
+{%- comment -%} For Clean Code {%- endcomment -%}
+
+{%- if image contains "://" -%}
+    {%- assign image_src = image -%}
+{%- else -%}
+    {%- assign image_src = image | relative_url -%}
+{%- endif -%}
+
+{%- assign opengraph_class = "opengraph" -%}
+
+{%- if image -%}
+    {%- assign opengraph_class = opengraph_class | append: " has-image" -%}
+{%- endif -%}
+
+{%- if include.class -%}
+    {%- assign opengraph_class = opengraph_class | append: " " | append: include.class -%}
+{%- endif -%}
+
+
+<div class="{{ opengraph_class }}">
+    <a
+        class="opengraph__link" 
+        href="{{ url | escape }}"
+        {% if target != "" %}target="{{ target | escape }}"{% endif %}
+        {% if target == "_blank" %}rel="noopener noreferrer"{% endif %}
+    >
+        {% if image %}
+            <span class="opengraph__image">
+                <img src="{{ image_src | escape }}">
+            </span>
+        {% endif %}
+        <span class="opengraph__body">
+            <strong class="opengraph__title">{{ title | escape }}</strong>
+            {%- if description -%}
+                <span class="opengraph__description">{{ description | escape }}</span>
+            {%- endif -%}
+            <span class="opengraph__domain">{{ domain | escape }}</span>
+        </span>
+    </a>
+</div>
