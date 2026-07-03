@@ -226,6 +226,7 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - assets/tree_sitter_parsers  # ignore Tree-Sitter Parser
 keep_files:
   - .git
   - .svn
