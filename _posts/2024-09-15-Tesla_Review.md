@@ -378,8 +378,8 @@ header:
 
 
 
-## 감시모드
-<p class="posts-subtitle">근데 왜 녹음 안됨?</p>
+## 앰비언트 라이트
+<p class="posts-subtitle">테슬라가 디자인을...?</p>
 
 ---
 
@@ -395,8 +395,8 @@ header:
 
 
 
-## 감시모드
-<p class="posts-subtitle">근데 왜 녹음 안됨?</p>
+## Enhanced Auto Pilot
+<p class="posts-subtitle">향상된 오토 파일럿: 테슬라 흑우 에디션</p>
 
 ---
 
