@@ -90,3 +90,17 @@
         display: none;
     }
 }
+
+@media (max-width: $medium-wide) {
+    .sidebar.sticky {
+        display: none;
+    }
+
+    .sidebar__right {
+        display: none;
+    }
+
+    .nav__list {
+        display: none;
+    }
+}
