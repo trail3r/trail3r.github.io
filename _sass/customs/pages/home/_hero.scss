@@ -1,0 +1,111 @@
+.page__content {
+    .hero {
+        display: flex;
+        width: 100vw;
+        margin-inline: calc(50% - 50vw);
+        margin-bottom: 3rem;
+        align-items: center;
+        justify-content: center;
+        font-family: "Galmuri11";
+        background-color: transparent;
+
+        .hero__link {
+            display: flex;
+            width: 100%;
+            padding: 5rem 3rem 3rem 3rem;
+            align-items: center;
+            color: #111;
+            text-align: center;
+            text-decoration: none;
+            flex-direction: column;
+
+            &:hover {
+                color: $black;
+                text-decoration: none;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            &:focus-visible {
+                outline: 2px solid $blue;
+            }
+
+            &:visited {
+                color: $black;
+                text-decoration: none;
+            }
+        }
+
+        .hero__inner-wrap {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5rem;
+
+            .hero__image {
+                display: block;
+                width: 20rem;
+                height: auto;
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+
+        .hero__content {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .hero__title {
+            margin-bottom: 0.75rem;
+            font-family: "Galmuri11";
+            font-size: $xxx-large-font-size;
+            font-weight: normal;
+        }
+
+        .hero__description {
+            max-width: 50rem;
+            font-size: $standard-font-size;
+            text-wrap: balance;
+            line-height: 1.25;
+            word-break: keep-all;
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .page__content {
+        .hero {
+            margin-bottom: 1.5rem;
+
+            .hero__inner-wrap {
+                margin-bottom: 3rem;
+
+                .hero__image {
+                    width: 15rem;
+                }
+            }
+
+            .hero__title {
+                margin-bottom: 0.5rem;
+                font-size: $xx-large-font-size;
+            }
+
+            .hero__description {
+                font-size: $standard-font-size;
+            }
+
+            .hero__link {
+                padding: 3rem 1rem 1rem 1rem;
+            }
+        }
+    }
+}
