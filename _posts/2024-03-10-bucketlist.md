@@ -12,7 +12,7 @@ tags: ["안내서", "버킷리스트"]
 header:
   teaser: /assets/images/posts/notice/bucketlist.jpg
 
-notice: true
+featured: true
 ---
 
 <center><img src="/assets/images/posts/notice/bucketlist.jpg"></center><br>

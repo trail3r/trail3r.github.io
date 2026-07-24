@@ -1,101 +1,93 @@
-{%- comment -%}
-파일(File):
-    - _includes/customs/posts-archive.html
+{% comment %}
+게시글 아카이브를 최신순으로 렌더링합니다.
 
-역할(Role):
-    - 업로드된 게시글 목록을 나열하는 게시판을 렌더링 한다.
+매개변수(Parameter)
+-----------------
+category_filtering : bool, default=true
+    카테고리 필터링 여부를 설정합니다.
+category : str, default=page.categories.first
+    필터링할 카테고리를 설정합니다.
+active_pagination : bool, default=true
+    페이지네이션의 활성화 여부를 설정합니다.
 
-입력(Inputs):
-    - include.category_filtering (optional, bool): 특정 카테고리 필터링 여부 (default: true)
-    - include.category (optional, string): 필터링 할 카테고리 (default: page.categories.first)
-    - include.contain_notice (optional, bool): 대표 게시글 포함 여부 (dafault: false)
-    - include.active_pagination (optional, bool): 페이지네이션 활성화 여부 (default: true)
+참고사항(Notes)
+-------------
+페이지네이션을 활성화하고 "paginator"가 존재하면 현재 페이지에 배정된 게시글만 표시합니다.
+페이지네이션을 사용하지 않으면 "site.posts"에 포함된 모든 게시글을 표시합니다.
+대표 게시글 여부와 관계없이 필터링된 모든 게시글을 표시합니다.
+게시글 요약은 Jekyll이 자동으로 생성한 "post.excerpt"를 사용합니다.
 
-의존성(Dependencies):
-    - _includes/customs/paginator-v2.html
-    - _sass/customs/_posts-archive.scss
+예시(Examples)
+-------------
+{% include customs/posts-archive.html %}
+{% include customs/posts-archive.html category="개구리의 밀실" active_pagination=false %}
+{% endcomment %}
 
-참고사항(Notes):
-    - 커스텀 레이아웃인 _layout/custom.html에 include하여 사용한다.
-{%- endcomment -%}
 
-{%- comment -%} 게시판 설정 변수 초기화 시작 {%- endcomment -%}
-{%- assign category_filtering = include.category_filtering | default: true -%}
-{%- assign filter = include.category.first | default: page.categories.first | default: "" -%}
-{%- assign contain_notice = include.contain_notice | default: false -%}
-{%- assign active_pagination = include.active_pagination | default: true -%}
+{% assign category_filtering = include.category_filtering %}
+{% assign category = include.category | default: page.categories.first | default: "" %}
+{% assign active_pagination = include.active_pagination %}
 
-{%- comment -%} 게시글 리소스 설정 {%- endcomment -%}
-{%- if active_pagination and paginator -%}
-    {%- assign posts = paginator.posts -%}
-{%- else -%}
-    {%- assign posts = site.posts -%}
-{%- endif -%}
+{% if category_filtering == nil %}
+    {% assign category_filtering = true %}
+{% endif %}
 
-{%- comment -%} 카테고리 필터링 {%- endcomment -%}
-{%- if category_filtering and filter != "" -%}
-    {%- assign posts = posts | where_exp: "post", "post.categories contains filter" -%}
-{%- endif -%}
+{% if active_pagination == nil %}
+    {% assign active_pagination = true %}
+{% endif %}
 
-{%- comment -%} 대표 게시글 포함 여부에 따른 게시글 필터링 {%- endcomment -%}
-{%- if contain_notice == false -%}
-    {%- assign posts = posts | where_exp: "post", "post.notice != true" -%}
-{%- endif -%}
+{% if active_pagination and paginator %}
+    {% assign posts = paginator.posts %}
+{% else %}
+    {% assign posts = site.posts %}
+{% endif %}
 
-{%- if posts and posts.size > 0 -%}
-<section class="posts-archive">
+{% if category_filtering and category != "" %}
+    {% assign posts = posts | where_exp: "post", "post.categories contains category" %}
+{% endif %}
 
-    <div class="posts-archive__list">
-        {%- for post in posts -%}
-            {%- assign represent = "" -%}
-            {%- if post.content contains "<!-- represent -->" -%}
-                {%- assign represent_contents = post.content | split: "<!-- represent -->" | last | split: "<!-- /represent -->" | first -%}
-                {%- assign represent = represent_contents | markdownify | strip_html | replace: "\n", " " | strip -%}
-            {%- endif -%}
+{% if posts.size > 0 %}
+    <section class="posts_archive">
+        <div class="posts_archive_list">
+            {% for post in posts %}
+                <article class="posts_archive_item">
+                    <a class="posts_archive_item_link" href="{{ post.url | relative_url }}">
+                        <div class="posts_archive_item_thumbnail">
+                            {% if post.header.teaser %}
+                                <img class="posts_archive_item_teaser" src="{{ post.header.teaser | relative_url }}" alt="">
+                            {% endif %}
+                        </div>
 
-            <article class="posts-archive-item">
-                <a class="posts-archive-item__link" href="{{ post.url | relative_url }}">
+                        <div class="posts_archive_item_body">
+                            {% if post.title %}
+                                <h3 class="posts_archive_item_title">{{ post.title | escape_once }}</h3>
+                            {% endif %}
 
-                    <div class="posts-archive-item__teaser{% unless post.header.teaser %} posts-archive__teaser--empty{% endunless %}">
-                        {%- if post.header.teaser -%}
-                            <img class="posts-archive-item__image" src="{{ post.header.teaser | relative_url }}" alt="{{ post.title }}">
-                        {%- else -%}
-                            <span class="posts-archive-item__image-placeholder" aria-hidden="true"></span>
-                        {%- endif -%}
-                    </div>
+                            <div class="posts_archive_item_metadata">
+                                {% if post.subtitle %}
+                                    <p class="posts_archive_item_subtitle">{{ post.subtitle | escape_once }}</p>
+                                {% else %}
+                                    <p class="posts_archive_item_subtitle empty" aria-hidden="true">&nbsp;</p>
+                                {% endif %}
 
-                    <div class="posts-archive-item__body">
-                        <h3 class="posts-archive-item__title">{{ post.title }}</h3>
+                                {% if post.excerpt %}
+                                    <p class="posts_archive_item_excerpt">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
+                                {% endif %}
 
-                        <div class="posts-archive-item__meta">
-                            {%- if post.subtitle -%}
-                                <p class="posts-archive-item__subtitle">{{ post.subtitle }}</p>
-                            {%- else -%}
-                                <p class="posts-archive-item__subtitle posts-archive-item__subtitle--empty" aria-hidden="true">&nbsp;</p>
-                            {%- endif -%}
+                                <time class="posts_archive_item_date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y. %m. %d" }}</time>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
 
-                            {%- if represent != "" -%}
-                                <p class="posts-archive-item__represent">{{ represent }}</p>
-                            {%- else -%}
-                                <p class="posts-archive-item__represent posts-archive-item__represent--empty" aria-hidden="true">&nbsp;</p>
-                            {%- endif -%}
-
-                            <time class="posts-archive-item__date">{{ post.date | date: "%Y. %m. %d" }}</time>
-                      </div>
-                  </div>
-                </a>
-            </article>
-        {%- endfor -%}
+        {% if active_pagination and paginator %}
+            {% include customs/paginator-v2.html %}
+        {% endif %}
+    </section>
+{% else %}
+    <div class="posts_archive_empty">
+        <p class="posts_archive_empty_message">이 게시판에 등록된 게시글이 없습니다!</p>
     </div>
-
-
-    {%- comment -%} 페이지네이션 렌더링 {%- endcomment -%}
-    {%- if active_pagination and paginator -%}
-        {%- include customs/paginator-v2.html -%}
-    {%- endif -%}
-</section>
-{%- else -%}
-<div class="posts-archive--empty">
-    <p class="posts-archive--empty__message">이 게시판에 등록된 게시글이 없습니다!</p>
-</div>
-{%- endif -%}
+{% endif %}

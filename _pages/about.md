@@ -13,4 +13,4 @@ pagination:
   category: ["개구리의 밀실"]
 ---
 
-{%- include customs/posts-archive.html contain_notice=true -%}
+{% include customs/posts-archive.html %}
